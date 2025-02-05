@@ -19,7 +19,7 @@ public class Book {
     private String name;
     private String genre;
 
-    private boolean isRead = false;
+    private boolean isRead;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
