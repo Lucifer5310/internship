@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "bookcase")
+@Table(name = "book")
 @Builder
 @Getter
 @Setter
@@ -18,7 +18,6 @@ public class Book {
     private long id;
     private String name;
     private String genre;
-
     private boolean isRead;
 
     @ManyToOne(cascade = CascadeType.ALL)
