@@ -25,9 +25,4 @@ public class Author {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Book> books;
-
-    public void removeBook(Book book) {
-        books.remove(book);
-        book.setAuthor(null);
-    }
 }

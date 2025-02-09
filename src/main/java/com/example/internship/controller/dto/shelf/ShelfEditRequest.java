@@ -12,5 +12,4 @@ import lombok.Setter;
 public class ShelfEditRequest {
 
     private String name;
-    private int bookcase_id;
 }

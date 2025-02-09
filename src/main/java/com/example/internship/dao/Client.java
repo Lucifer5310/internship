@@ -25,15 +25,6 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Book> books;
 
-    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToOne(mappedBy = "client"/*, cascade = CascadeType.ALL*/)
     private Users user;
-
-    public void removeBook(Book book) {
-        books.remove(book);
-        book.setClient(null);
-    }
-
-    public void removeUser() {
-        this.user.setClient(null);
-    }
 }

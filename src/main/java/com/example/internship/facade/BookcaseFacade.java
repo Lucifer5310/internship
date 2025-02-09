@@ -20,7 +20,7 @@ public class BookcaseFacade {
     }
 
     public void delete(long id) {
-        bookcaseService.delete((int) id);
+        bookcaseService.delete(id);
     }
 
     public BookcaseCreateResponse savePostRequest(BookcaseCreateRequest bookcaseCreateRequest){

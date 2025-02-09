@@ -1,11 +1,10 @@
 package com.example.internship.service;
 
 import com.example.internship.dao.Book;
-import com.example.internship.dao.Client;
 import com.example.internship.repository.BookRepository;
-import com.example.internship.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,15 +13,34 @@ import java.util.Optional;
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final ClientRepository clientRepository;
 
-    public void delete(long id) {
-        /*Optional<Book> book = bookRepository.findById(id);
-        Book book1 = book.get();
-        Optional<Client> client = clientRepository.findById(book1.getClient().getId());
-        Client client1 = client.get();
-        client1.removeBook(book1);*/
-        bookRepository.deleteById(id);
+    @Transactional
+    public void delete(Long id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+
+        if (bookOptional.isPresent()) {
+            Book book = bookOptional.get();
+
+            if (book.getAuthor() != null) {
+                book.getAuthor().getBooks().remove(book);
+                book.setAuthor(null);
+            }
+
+            if (book.getClient() != null) {
+                book.getClient().getBooks().remove(book);
+                book.setClient(null);
+            }
+
+            if (book.getShelf() != null) {
+                book.getShelf().getBooks().remove(book);
+                book.setShelf(null);
+            }
+            bookRepository.save(book);
+
+            bookRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Книга с ID " + id + " не найден");
+        }
     }
 
     public Book save(Book book){

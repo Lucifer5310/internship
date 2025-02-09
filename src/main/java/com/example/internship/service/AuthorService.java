@@ -1,9 +1,11 @@
 package com.example.internship.service;
 
 import com.example.internship.dao.Author;
+import com.example.internship.dao.Book;
 import com.example.internship.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -13,8 +15,23 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public void delete(long id) {
-        authorRepository.deleteById(id);
+    @Transactional
+    public void delete(Long id) {
+        Optional<Author> authorOptional = authorRepository.findById(id);
+
+        if (authorOptional.isPresent()) {
+            Author author = authorOptional.get();
+
+            for (Book book : author.getBooks()) {
+                book.setAuthor(null);
+            }
+            author.getBooks().clear();
+
+            authorRepository.save(author);
+            authorRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Автор с ID " + id + " не найден");
+        }
     }
 
     public Author save(Author author){

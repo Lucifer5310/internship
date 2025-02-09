@@ -24,12 +24,7 @@ public class Shelf {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shelf", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Book> books;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "bookcase_id")
     private Bookcase bookcase;
-
-    public void removeBook(Book book) {
-        books.remove(book);
-        book.setShelf(null);
-    }
 }

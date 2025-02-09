@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,14 +17,25 @@ public class ClientService {
 
     @Transactional
     public void delete(Long id) {
-        Client client = clientRepository.findById(id).get();
-        List<Book> book = client.getBooks();
-        for (int i = 0; i < book.size(); i++) {
-            Book a = book.get(i);
-            client.removeBook(a);
+        Optional<Client> optionalClient = clientRepository.findById(id);
+
+        if (optionalClient.isPresent()) {
+            Client client = optionalClient.get();
+
+            for (Book book : client.getBooks()) {
+                book.setClient(null);
+            }
+            client.getBooks().clear();
+
+            if (client.getUser() != null) {
+                client.getUser().setClient(null);
+            }
+
+            clientRepository.save(client);
+            clientRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Клиент с ID " + id + " не найден");
         }
-        client.removeUser();
-        clientRepository.delete(client);
     }
 
     public Client save(Client client){

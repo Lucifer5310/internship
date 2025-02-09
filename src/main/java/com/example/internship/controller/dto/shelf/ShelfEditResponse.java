@@ -10,5 +10,4 @@ import lombok.*;
 public class ShelfEditResponse {
 
     private String name;
-    private int bookcase_id;
 }

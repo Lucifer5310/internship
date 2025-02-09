@@ -23,9 +23,4 @@ public class Bookcase {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookcase", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Shelf> shelfs;
-
-    public void removeShelf(Shelf shelf) {
-        shelfs.remove(shelf);
-        shelf.setBookcase(null);
-    }
 }

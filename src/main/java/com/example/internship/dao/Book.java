@@ -21,15 +21,15 @@ public class Book {
     private String genre;
     private boolean isRead;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "shelf_id")
     private Shelf shelf;
 }
