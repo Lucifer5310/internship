@@ -13,7 +13,7 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public void delete(int id) {
+    public void delete(long id) {
         authorRepository.deleteById(id);
     }
 
@@ -26,7 +26,7 @@ public class AuthorService {
     }
 
     public Author findById(long id) {
-        Optional<Author> byId = authorRepository.findById((int) id);
+        Optional<Author> byId = authorRepository.findById(id);
         return byId.orElseThrow();
     }
 }

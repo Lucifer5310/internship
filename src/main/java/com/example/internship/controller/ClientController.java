@@ -1,39 +1,39 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.facade.AuthorFacade;
+import com.example.internship.controller.dto.client.ClientCreateRequest;
+import com.example.internship.controller.dto.client.ClientCreateResponse;
+import com.example.internship.controller.dto.client.ClientEditRequest;
+import com.example.internship.controller.dto.client.ClientEditResponse;
+import com.example.internship.dao.Client;
+import com.example.internship.facade.ClientFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/client")
 @RequiredArgsConstructor
 public class ClientController {
 
-    private final AuthorFacade authorFacade;
+    private final ClientFacade clientFacade;
 
     @GetMapping
-    public Iterable<Author> findAllCall() {
-        return authorFacade.findAll();
+    public Iterable<Client> findAllClient() {
+        return clientFacade.findAll();
     }
 
     @PostMapping
-    public AuthorCreateResponse addOneCall(@RequestBody AuthorCreateRequest authorCreateRequest){
-        return authorFacade.savePostRequest(authorCreateRequest);
+    public ClientCreateResponse addOneClient(@RequestBody ClientCreateRequest clientCreateRequest){
+        return clientFacade.savePostRequest(clientCreateRequest);
     }
 
     @PutMapping(value = "/{id}")
-    public AuthorEditResponse replaceCall(@RequestBody AuthorEditRequest authorEditRequest,
-                                          @PathVariable long id) {
-        return authorFacade.saveEditRequest(authorEditRequest, id);
+    public ClientEditResponse replaceClient(@RequestBody ClientEditRequest clientEditRequest,
+                                            @PathVariable long id) {
+        return clientFacade.saveEditRequest(clientEditRequest, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCall(@PathVariable long id) {
-        authorFacade.delete(id);
+    public void deleteClient(@PathVariable Long id) {
+        clientFacade.delete(id);
     }
 }

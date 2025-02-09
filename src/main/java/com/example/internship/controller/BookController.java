@@ -1,39 +1,39 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.facade.AuthorFacade;
+import com.example.internship.controller.dto.book.BookCreateRequest;
+import com.example.internship.controller.dto.book.BookCreateResponse;
+import com.example.internship.controller.dto.book.BookEditRequest;
+import com.example.internship.controller.dto.book.BookEditResponse;
+import com.example.internship.dao.Book;
+import com.example.internship.facade.BookFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/book")
 @RequiredArgsConstructor
 public class BookController {
 
-    private final AuthorFacade authorFacade;
+    private final BookFacade bookFacade;
 
     @GetMapping
-    public Iterable<Author> findAllCall() {
-        return authorFacade.findAll();
+    public Iterable<Book> findAllBook() {
+        return bookFacade.findAll();
     }
 
     @PostMapping
-    public AuthorCreateResponse addOneCall(@RequestBody AuthorCreateRequest authorCreateRequest){
-        return authorFacade.savePostRequest(authorCreateRequest);
+    public BookCreateResponse addOneBook(@RequestBody BookCreateRequest bookCreateRequest){
+        return bookFacade.savePostRequest(bookCreateRequest);
     }
 
     @PutMapping(value = "/{id}")
-    public AuthorEditResponse replaceCall(@RequestBody AuthorEditRequest authorEditRequest,
-                                          @PathVariable long id) {
-        return authorFacade.saveEditRequest(authorEditRequest, id);
+    public BookEditResponse replaceBook(@RequestBody BookEditRequest bookEditRequest,
+                                        @PathVariable long id) {
+        return bookFacade.saveEditRequest(bookEditRequest, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCall(@PathVariable long id) {
-        authorFacade.delete(id);
+    public void deleteBook(@PathVariable long id) {
+        bookFacade.delete(id);
     }
 }

@@ -11,10 +11,11 @@ import lombok.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@SequenceGenerator(name = "book_seq", sequenceName = "book_seq", allocationSize = 1)
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     private long id;
     private String name;
     private String genre;

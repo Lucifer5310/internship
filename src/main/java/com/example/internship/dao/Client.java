@@ -13,17 +13,27 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@SequenceGenerator(name = "client_seq", sequenceName = "client_seq", allocationSize = 1)
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
     private long id;
     private String firstName;
     private String middleName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Book> books;
 
-    @OneToOne(mappedBy = "client")
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = false)
     private Users user;
+
+    public void removeBook(Book book) {
+        books.remove(book);
+        book.setClient(null);
+    }
+
+    public void removeUser() {
+        this.user.setClient(null);
+    }
 }

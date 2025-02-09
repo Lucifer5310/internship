@@ -22,7 +22,7 @@ public class AuthorFacade {
     }
 
     public void delete(long id) {
-        authorService.delete((int) id);
+        authorService.delete(id);
     }
 
     public AuthorCreateResponse savePostRequest(AuthorCreateRequest authorCreateRequest){
@@ -42,8 +42,6 @@ public class AuthorFacade {
         Author author = authorService.findById(id);
         author.setName(authorEditRequest.getName());
         author.setDateOfBirth(authorEditRequest.getDateOfBirth());
-
-        //System system = systemService.findById(callEditRequest.getSystemId());
 
         Author saved = authorService.save(author);
 

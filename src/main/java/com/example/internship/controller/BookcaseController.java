@@ -1,39 +1,40 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.facade.AuthorFacade;
+
+import com.example.internship.controller.dto.bookcase.BookcaseCreateRequest;
+import com.example.internship.controller.dto.bookcase.BookcaseCreateResponse;
+import com.example.internship.controller.dto.bookcase.BookcaseEditRequest;
+import com.example.internship.controller.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dao.Bookcase;
+import com.example.internship.facade.BookcaseFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/bookcase")
 @RequiredArgsConstructor
 public class BookcaseController {
 
-    private final AuthorFacade authorFacade;
+    private final BookcaseFacade bookcaseFacade;
 
     @GetMapping
-    public Iterable<Author> findAllCall() {
-        return authorFacade.findAll();
+    public Iterable<Bookcase> findAllBookcase() {
+        return bookcaseFacade.findAll();
     }
 
     @PostMapping
-    public AuthorCreateResponse addOneCall(@RequestBody AuthorCreateRequest authorCreateRequest){
-        return authorFacade.savePostRequest(authorCreateRequest);
+    public BookcaseCreateResponse addOneBookcase(@RequestBody BookcaseCreateRequest bookcaseCreateRequest){
+        return bookcaseFacade.savePostRequest(bookcaseCreateRequest);
     }
 
     @PutMapping(value = "/{id}")
-    public AuthorEditResponse replaceCall(@RequestBody AuthorEditRequest authorEditRequest,
-                                          @PathVariable long id) {
-        return authorFacade.saveEditRequest(authorEditRequest, id);
+    public BookcaseEditResponse replaceBookcase(@RequestBody BookcaseEditRequest bookcaseEditRequest,
+                                                @PathVariable long id) {
+        return bookcaseFacade.saveEditRequest(bookcaseEditRequest, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCall(@PathVariable long id) {
-        authorFacade.delete(id);
+    public void deleteBookcase(@PathVariable long id) {
+        bookcaseFacade.delete(id);
     }
 }

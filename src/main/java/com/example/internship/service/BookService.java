@@ -1,7 +1,9 @@
 package com.example.internship.service;
 
-import com.example.internship.dao.Author;
-import com.example.internship.repository.AuthorRepository;
+import com.example.internship.dao.Book;
+import com.example.internship.dao.Client;
+import com.example.internship.repository.BookRepository;
+import com.example.internship.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +13,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookService {
 
-    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+    private final ClientRepository clientRepository;
 
-    public void delete(int id) {
-        authorRepository.deleteById(id);
+    public void delete(long id) {
+        /*Optional<Book> book = bookRepository.findById(id);
+        Book book1 = book.get();
+        Optional<Client> client = clientRepository.findById(book1.getClient().getId());
+        Client client1 = client.get();
+        client1.removeBook(book1);*/
+        bookRepository.deleteById(id);
     }
 
-    public Author save(Author author){
-        return authorRepository.save(author);
+    public Book save(Book book){
+        return bookRepository.save(book);
     }
 
-    public Iterable<Author> findAll() {
-        return authorRepository.findAll();
+    public Iterable<Book> findAll() {
+        return bookRepository.findAll();
     }
 
-    public Author findById(long id) {
-        Optional<Author> byId = authorRepository.findById((int) id);
+    public Book findById(long id) {
+        Optional<Book> byId = bookRepository.findById(id);
         return byId.orElseThrow();
     }
 }

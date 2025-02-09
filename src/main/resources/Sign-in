@@ -1,0 +1,13 @@
+1) Login: seva ($2a$10$mQrDZM6ERnuz0selUQp30..tMAlkauDhYTrDuHONjjiQiI31xThHq)
+   Password: 12345
+   Role: Admin
+
+2) Login: rrrr ($2a$10$e0VEY11uK2vTrVWMCy78..t3rAArQGaaJ2mizFAT/5uhjwHcfbqFC)
+   Password: 0000
+   Role: User
+
+3) Login: qqqq ($2a$10$uNPiKmEwiD5VryowiXkm5uIakl2h1Bd1z0mrn0vSjrDEy1bilNa7O)
+   Password: 1111
+   Role: User
+
+   Доступ к Swagger: http://localhost:8080/swagger-ui/index.html#/

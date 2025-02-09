@@ -1,7 +1,7 @@
 package com.example.internship.service;
 
-import com.example.internship.dao.Author;
-import com.example.internship.repository.AuthorRepository;
+import com.example.internship.dao.Bookcase;
+import com.example.internship.repository.BookcaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +11,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookcaseService {
 
-    private final AuthorRepository authorRepository;
+    private final BookcaseRepository bookcaseService;
 
-    public void delete(int id) {
-        authorRepository.deleteById(id);
+    public void delete(long id) {
+        bookcaseService.deleteById(id);
     }
 
-    public Author save(Author author){
-        return authorRepository.save(author);
+    public Bookcase save(Bookcase bookcase){
+        return bookcaseService.save(bookcase);
     }
 
-    public Iterable<Author> findAll() {
-        return authorRepository.findAll();
+    public Iterable<Bookcase> findAll() {
+        return bookcaseService.findAll();
     }
 
-    public Author findById(long id) {
-        Optional<Author> byId = authorRepository.findById((int) id);
+    public Bookcase findById(long id) {
+        Optional<Bookcase> byId = bookcaseService.findById(id);
         return byId.orElseThrow();
     }
 }

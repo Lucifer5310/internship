@@ -1,12 +1,11 @@
 package com.example.internship.facade;
 
-
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.service.AuthorService;
+import com.example.internship.controller.dto.book.BookCreateRequest;
+import com.example.internship.controller.dto.book.BookCreateResponse;
+import com.example.internship.controller.dto.book.BookEditRequest;
+import com.example.internship.controller.dto.book.BookEditResponse;
+import com.example.internship.dao.Book;
+import com.example.internship.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,41 +13,43 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BookFacade {
 
-    private final AuthorService authorService;
+    private final BookService bookService;
 
-    public Iterable<Author> findAll() {
-        return authorService.findAll();
+    public Iterable<Book> findAll() {
+        return bookService.findAll();
     }
 
     public void delete(long id) {
-        authorService.delete((int) id);
+        bookService.delete(id);
     }
 
-    public AuthorCreateResponse savePostRequest(AuthorCreateRequest authorCreateRequest){
-        final Author author = new Author();
-        author.setName(authorCreateRequest.getName());
-        author.setDateOfBirth(authorCreateRequest.getDateOfBirth());
+    public BookCreateResponse savePostRequest(BookCreateRequest bookCreateRequest){
+        final Book book = new Book();
+        book.setName(bookCreateRequest.getName());
+        book.setGenre(bookCreateRequest.getGenre());
+        book.setRead(bookCreateRequest.isRead());
 
-        Author saved = authorService.save(author);
+        Book saved = bookService.save(book);
 
-        return AuthorCreateResponse.builder()
+        return BookCreateResponse.builder()
                 .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
+                .genre(saved.getGenre())
+                .isRead(saved.isRead())
                 .build();
     }
 
-    public AuthorEditResponse saveEditRequest(AuthorEditRequest authorEditRequest, long id){
-        Author author = authorService.findById(id);
-        author.setName(authorEditRequest.getName());
-        author.setDateOfBirth(authorEditRequest.getDateOfBirth());
+    public BookEditResponse saveEditRequest(BookEditRequest bookEditRequest, long id){
+        Book book = bookService.findById(id);
+        book.setName(bookEditRequest.getName());
+        book.setGenre(bookEditRequest.getGenre());
+        book.setRead(bookEditRequest.isRead());
 
-        //System system = systemService.findById(callEditRequest.getSystemId());
+        Book saved = bookService.save(book);
 
-        Author saved = authorService.save(author);
-
-        return AuthorEditResponse.builder()
+        return BookEditResponse.builder()
                 .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
+                .genre(saved.getGenre())
+                .isRead(saved.isRead())
                 .build();
     }
 }

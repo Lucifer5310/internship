@@ -1,12 +1,11 @@
 package com.example.internship.facade;
 
-
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.service.AuthorService;
+import com.example.internship.controller.dto.shelf.ShelfCreateRequest;
+import com.example.internship.controller.dto.shelf.ShelfCreateResponse;
+import com.example.internship.controller.dto.shelf.ShelfEditRequest;
+import com.example.internship.controller.dto.shelf.ShelfEditResponse;
+import com.example.internship.dao.Shelf;
+import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,41 +13,35 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ShelfFacade {
 
-    private final AuthorService authorService;
+    private final ShelfService shelfService;
 
-    public Iterable<Author> findAll() {
-        return authorService.findAll();
+    public Iterable<Shelf> findAll() {
+        return shelfService.findAll();
     }
 
     public void delete(long id) {
-        authorService.delete((int) id);
+        shelfService.delete(id);
     }
 
-    public AuthorCreateResponse savePostRequest(AuthorCreateRequest authorCreateRequest){
-        final Author author = new Author();
-        author.setName(authorCreateRequest.getName());
-        author.setDateOfBirth(authorCreateRequest.getDateOfBirth());
+    public ShelfCreateResponse savePostRequest(ShelfCreateRequest shelfCreateRequest){
+        final Shelf shelf = new Shelf();
+        shelf.setName(shelfCreateRequest.getName());
 
-        Author saved = authorService.save(author);
+        Shelf saved = shelfService.save(shelf);
 
-        return AuthorCreateResponse.builder()
+        return ShelfCreateResponse.builder()
                 .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
                 .build();
     }
 
-    public AuthorEditResponse saveEditRequest(AuthorEditRequest authorEditRequest, long id){
-        Author author = authorService.findById(id);
-        author.setName(authorEditRequest.getName());
-        author.setDateOfBirth(authorEditRequest.getDateOfBirth());
+    public ShelfEditResponse saveEditRequest(ShelfEditRequest shelfEditRequest, long id){
+        Shelf shelf = shelfService.findById(id);
+        shelf.setName(shelfEditRequest.getName());
 
-        //System system = systemService.findById(callEditRequest.getSystemId());
+        Shelf saved = shelfService.save(shelf);
 
-        Author saved = authorService.save(author);
-
-        return AuthorEditResponse.builder()
+        return ShelfEditResponse.builder()
                 .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
                 .build();
     }
 }

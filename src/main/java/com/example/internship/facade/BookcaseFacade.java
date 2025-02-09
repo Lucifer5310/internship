@@ -1,12 +1,11 @@
 package com.example.internship.facade;
 
-
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
-import com.example.internship.service.AuthorService;
+import com.example.internship.controller.dto.bookcase.BookcaseCreateRequest;
+import com.example.internship.controller.dto.bookcase.BookcaseCreateResponse;
+import com.example.internship.controller.dto.bookcase.BookcaseEditRequest;
+import com.example.internship.controller.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dao.Bookcase;
+import com.example.internship.service.BookcaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,41 +13,35 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BookcaseFacade {
 
-    private final AuthorService authorService;
+    private final BookcaseService bookcaseService;
 
-    public Iterable<Author> findAll() {
-        return authorService.findAll();
+    public Iterable<Bookcase> findAll() {
+        return bookcaseService.findAll();
     }
 
     public void delete(long id) {
-        authorService.delete((int) id);
+        bookcaseService.delete((int) id);
     }
 
-    public AuthorCreateResponse savePostRequest(AuthorCreateRequest authorCreateRequest){
-        final Author author = new Author();
-        author.setName(authorCreateRequest.getName());
-        author.setDateOfBirth(authorCreateRequest.getDateOfBirth());
+    public BookcaseCreateResponse savePostRequest(BookcaseCreateRequest bookcaseCreateRequest){
+        final Bookcase bookcase = new Bookcase();
+        bookcase.setNumber(bookcaseCreateRequest.getNumber());
 
-        Author saved = authorService.save(author);
+        Bookcase saved = bookcaseService.save(bookcase);
 
-        return AuthorCreateResponse.builder()
-                .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
+        return BookcaseCreateResponse.builder()
+                .number(saved.getNumber())
                 .build();
     }
 
-    public AuthorEditResponse saveEditRequest(AuthorEditRequest authorEditRequest, long id){
-        Author author = authorService.findById(id);
-        author.setName(authorEditRequest.getName());
-        author.setDateOfBirth(authorEditRequest.getDateOfBirth());
+    public BookcaseEditResponse saveEditRequest(BookcaseEditRequest bookcaseEditRequest, long id){
+        Bookcase bookcase = bookcaseService.findById(id);
+        bookcase.setNumber(bookcaseEditRequest.getNumber());
 
-        //System system = systemService.findById(callEditRequest.getSystemId());
+        Bookcase saved = bookcaseService.save(bookcase);
 
-        Author saved = authorService.save(author);
-
-        return AuthorEditResponse.builder()
-                .name(saved.getName())
-                .dateOfBirth(saved.getDateOfBirth())
+        return BookcaseEditResponse.builder()
+                .number(saved.getNumber())
                 .build();
     }
 }

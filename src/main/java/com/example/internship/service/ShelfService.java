@@ -1,7 +1,7 @@
 package com.example.internship.service;
 
-import com.example.internship.dao.Author;
-import com.example.internship.repository.AuthorRepository;
+import com.example.internship.dao.Shelf;
+import com.example.internship.repository.ShelfRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +11,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ShelfService {
 
-    private final AuthorRepository authorRepository;
+    private final ShelfRepository shelfRepository;
 
-    public void delete(int id) {
-        authorRepository.deleteById(id);
+    public void delete(long id) {
+        shelfRepository.deleteById(id);
     }
 
-    public Author save(Author author){
-        return authorRepository.save(author);
+    public Shelf save(Shelf shelf){
+        return shelfRepository.save(shelf);
     }
 
-    public Iterable<Author> findAll() {
-        return authorRepository.findAll();
+    public Iterable<Shelf> findAll() {
+        return shelfRepository.findAll();
     }
 
-    public Author findById(long id) {
-        Optional<Author> byId = authorRepository.findById((int) id);
+    public Shelf findById(long id) {
+        Optional<Shelf> byId = shelfRepository.findById(id);
         return byId.orElseThrow();
     }
 }

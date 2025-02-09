@@ -17,10 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@SequenceGenerator(name = "users_seq", sequenceName = "users_seq", allocationSize = 1)
 public class Users implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
     private long id;
     private String username;
     private String email;
@@ -29,7 +30,7 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 
