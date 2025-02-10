@@ -7,10 +7,12 @@ import com.example.internship.controller.dto.shelf.ShelfEditResponse;
 import com.example.internship.dao.Shelf;
 import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ShelfFacade {
 
     private final ShelfService shelfService;
@@ -28,6 +30,7 @@ public class ShelfFacade {
         shelf.setName(shelfCreateRequest.getName());
 
         Shelf saved = shelfService.save(shelf);
+        log.info("Shelf is added");
 
         return ShelfCreateResponse.builder()
                 .name(saved.getName())
@@ -39,6 +42,7 @@ public class ShelfFacade {
         shelf.setName(shelfEditRequest.getName());
 
         Shelf saved = shelfService.save(shelf);
+        log.info("Shelf is edited");
 
         return ShelfEditResponse.builder()
                 .name(saved.getName())

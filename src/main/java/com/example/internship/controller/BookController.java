@@ -7,6 +7,7 @@ import com.example.internship.controller.dto.book.BookEditResponse;
 import com.example.internship.dao.Book;
 import com.example.internship.facade.BookFacade;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

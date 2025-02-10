@@ -7,10 +7,12 @@ import com.example.internship.controller.dto.book.BookEditResponse;
 import com.example.internship.dao.Book;
 import com.example.internship.service.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class BookFacade {
 
     private final BookService bookService;
@@ -30,6 +32,7 @@ public class BookFacade {
         book.setRead(bookCreateRequest.isRead());
 
         Book saved = bookService.save(book);
+        log.info("Book is added");
 
         return BookCreateResponse.builder()
                 .name(saved.getName())
@@ -45,6 +48,7 @@ public class BookFacade {
         book.setRead(bookEditRequest.isRead());
 
         Book saved = bookService.save(book);
+        log.info("Book is edited");
 
         return BookEditResponse.builder()
                 .name(saved.getName())

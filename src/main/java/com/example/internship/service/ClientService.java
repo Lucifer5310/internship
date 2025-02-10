@@ -4,6 +4,8 @@ import com.example.internship.dao.Book;
 import com.example.internship.dao.Client;
 import com.example.internship.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ClientService {
 
     private final ClientRepository clientRepository;
@@ -33,21 +36,25 @@ public class ClientService {
 
             clientRepository.save(client);
             clientRepository.deleteById(id);
+            log.info("Client is deleted");
         } else {
-            throw new RuntimeException("Клиент с ID " + id + " не найден");
+            throw new RuntimeException("Client with ID " + id + " not found");
         }
     }
 
+    @Transactional
     public Client save(Client client){
         return clientRepository.save(client);
     }
 
+    @Transactional(readOnly = true)
     public Iterable<Client> findAll() {
         return clientRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Client findById(long id) {
         Optional<Client> byId = clientRepository.findById(id);
-        return byId.orElseThrow();
+        return byId.orElseThrow(() -> new UsernameNotFoundException("Client not found"));
     }
 }

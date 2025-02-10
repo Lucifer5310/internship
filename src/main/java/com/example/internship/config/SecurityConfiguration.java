@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                     return corsConfiguration;
                 }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers("/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**").permitAll()
                         .requestMatchers("/users").hasRole("ADMIN")
                         .requestMatchers("/author", "/author/**", "/book", "/book/**", "/bookcase", "/bookcase/**",
                                 "/client", "/client/**", "/shelf", "/shelf/**").hasAnyRole("ADMIN", "USER")

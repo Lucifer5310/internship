@@ -7,10 +7,12 @@ import com.example.internship.controller.dto.client.ClientEditResponse;
 import com.example.internship.dao.Client;
 import com.example.internship.service.ClientService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ClientFacade {
 
     private final ClientService clientService;
@@ -29,6 +31,7 @@ public class ClientFacade {
         client.setMiddleName(clientCreateRequest.getMiddleName());
 
         Client saved = clientService.save(client);
+        log.info("Client is added");
 
         return ClientCreateResponse.builder()
                 .firstName(saved.getFirstName())
@@ -42,6 +45,7 @@ public class ClientFacade {
         client.setMiddleName(clientEditRequest.getMiddleName());
 
         Client saved = clientService.save(client);
+        log.info("Client is edited");
 
         return ClientEditResponse.builder()
                 .firstName(saved.getFirstName())

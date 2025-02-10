@@ -7,10 +7,12 @@ import com.example.internship.controller.dto.bookcase.BookcaseEditResponse;
 import com.example.internship.dao.Bookcase;
 import com.example.internship.service.BookcaseService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class BookcaseFacade {
 
     private final BookcaseService bookcaseService;
@@ -28,6 +30,7 @@ public class BookcaseFacade {
         bookcase.setNumber(bookcaseCreateRequest.getNumber());
 
         Bookcase saved = bookcaseService.save(bookcase);
+        log.info("Bookcase is added");
 
         return BookcaseCreateResponse.builder()
                 .number(saved.getNumber())
@@ -39,6 +42,7 @@ public class BookcaseFacade {
         bookcase.setNumber(bookcaseEditRequest.getNumber());
 
         Bookcase saved = bookcaseService.save(bookcase);
+        log.info("Bookcase is edited");
 
         return BookcaseEditResponse.builder()
                 .number(saved.getNumber())

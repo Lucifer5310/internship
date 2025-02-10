@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
+    @Transactional
     public JwtAuthenticationResponse signUp(SignUpRequest signUpRequest) {
         var user = Users.builder()
                 .username(signUpRequest.getUsername())
@@ -35,6 +37,7 @@ public class AuthenticationService {
         return new JwtAuthenticationResponse(jwt);
     }
 
+    @Transactional
     public JwtAuthenticationResponse signIn(SignInRequest signUpRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 signUpRequest.getUsername(), signUpRequest.getPassword()));

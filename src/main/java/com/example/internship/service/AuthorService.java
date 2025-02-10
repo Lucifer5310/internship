@@ -4,6 +4,8 @@ import com.example.internship.dao.Author;
 import com.example.internship.dao.Book;
 import com.example.internship.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
@@ -29,21 +32,25 @@ public class AuthorService {
 
             authorRepository.save(author);
             authorRepository.deleteById(id);
+            log.info("Author is deleted");
         } else {
-            throw new RuntimeException("Автор с ID " + id + " не найден");
+            throw new RuntimeException("Author with ID " + id + " not found");
         }
     }
 
+    @Transactional
     public Author save(Author author){
         return authorRepository.save(author);
     }
 
+    @Transactional(readOnly = true)
     public Iterable<Author> findAll() {
         return authorRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Author findById(long id) {
         Optional<Author> byId = authorRepository.findById(id);
-        return byId.orElseThrow();
+        return byId.orElseThrow(() -> new UsernameNotFoundException("Author not found"));
     }
 }

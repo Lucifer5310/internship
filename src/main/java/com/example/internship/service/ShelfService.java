@@ -1,10 +1,11 @@
 package com.example.internship.service;
 
 import com.example.internship.dao.Book;
-import com.example.internship.dao.Client;
 import com.example.internship.dao.Shelf;
 import com.example.internship.repository.ShelfRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ShelfService {
 
     private final ShelfRepository shelfRepository;
@@ -34,23 +36,26 @@ public class ShelfService {
             }
 
             shelfRepository.save(shelf);
-
             shelfRepository.deleteById(id);
+            log.info("Shelf is deleted");
         } else {
-            throw new RuntimeException("Клиент с ID " + id + " не найден");
+            throw new RuntimeException("Shelf with ID " + id + " not found");
         }
     }
 
+    @Transactional
     public Shelf save(Shelf shelf){
         return shelfRepository.save(shelf);
     }
 
+    @Transactional(readOnly = true)
     public Iterable<Shelf> findAll() {
         return shelfRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Shelf findById(long id) {
         Optional<Shelf> byId = shelfRepository.findById(id);
-        return byId.orElseThrow();
+        return byId.orElseThrow(() -> new UsernameNotFoundException("Shelf not found"));
     }
 }

@@ -6,13 +6,14 @@ import com.example.internship.controller.dto.author.AuthorCreateResponse;
 import com.example.internship.controller.dto.author.AuthorEditRequest;
 import com.example.internship.controller.dto.author.AuthorEditResponse;
 import com.example.internship.dao.Author;
-import com.example.internship.dao.Book;
 import com.example.internship.service.AuthorService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class AuthorFacade {
 
     private final AuthorService authorService;
@@ -31,6 +32,7 @@ public class AuthorFacade {
         author.setDateOfBirth(authorCreateRequest.getDateOfBirth());
 
         Author saved = authorService.save(author);
+        log.info("Author is added");
 
         return AuthorCreateResponse.builder()
                 .name(saved.getName())
@@ -44,6 +46,7 @@ public class AuthorFacade {
         author.setDateOfBirth(authorEditRequest.getDateOfBirth());
 
         Author saved = authorService.save(author);
+        log.info("Author is edited");
 
         return AuthorEditResponse.builder()
                 .name(saved.getName())

@@ -3,6 +3,8 @@ package com.example.internship.service;
 import com.example.internship.dao.Book;
 import com.example.internship.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -36,23 +39,26 @@ public class BookService {
                 book.setShelf(null);
             }
             bookRepository.save(book);
-
             bookRepository.deleteById(id);
+            log.info("Book is deleted");
         } else {
-            throw new RuntimeException("Книга с ID " + id + " не найден");
+            throw new RuntimeException("Book with ID " + id + " not found");
         }
     }
 
+    @Transactional
     public Book save(Book book){
         return bookRepository.save(book);
     }
 
+    @Transactional(readOnly = true)
     public Iterable<Book> findAll() {
         return bookRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Book findById(long id) {
         Optional<Book> byId = bookRepository.findById(id);
-        return byId.orElseThrow();
+        return byId.orElseThrow(() -> new UsernameNotFoundException("Book not found"));
     }
 }
