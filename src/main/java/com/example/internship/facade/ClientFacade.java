@@ -1,10 +1,10 @@
 package com.example.internship.facade;
 
-import com.example.internship.controller.dto.client.ClientCreateRequest;
-import com.example.internship.controller.dto.client.ClientCreateResponse;
-import com.example.internship.controller.dto.client.ClientEditRequest;
-import com.example.internship.controller.dto.client.ClientEditResponse;
-import com.example.internship.dao.Client;
+import com.example.internship.dto.client.ClientCreateRequest;
+import com.example.internship.dto.client.ClientCreateResponse;
+import com.example.internship.dto.client.ClientEditRequest;
+import com.example.internship.dto.client.ClientEditResponse;
+import com.example.internship.dao.entity.Client;
 import com.example.internship.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

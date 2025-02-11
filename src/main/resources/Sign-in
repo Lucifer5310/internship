@@ -1,12 +1,12 @@
-1) Login: seva ($2a$10$mQrDZM6ERnuz0selUQp30..tMAlkauDhYTrDuHONjjiQiI31xThHq)
+1) Login: seva
    Password: 12345
    Role: Admin
 
-2) Login: rrrr ($2a$10$e0VEY11uK2vTrVWMCy78..t3rAArQGaaJ2mizFAT/5uhjwHcfbqFC)
+2) Login: rrrr
    Password: 0000
    Role: User
 
-3) Login: qqqq ($2a$10$uNPiKmEwiD5VryowiXkm5uIakl2h1Bd1z0mrn0vSjrDEy1bilNa7O)
+3) Login: qqqq
    Password: 1111
    Role: User
 

@@ -1,10 +1,10 @@
 package com.example.internship.service;
 
-import com.example.internship.controller.dto.authenticationAuthorisation.JwtAuthenticationResponse;
-import com.example.internship.controller.dto.authenticationAuthorisation.SignInRequest;
-import com.example.internship.controller.dto.authenticationAuthorisation.SignUpRequest;
-import com.example.internship.dao.Role;
-import com.example.internship.dao.Users;
+import com.example.internship.dto.authenticationAuthorisation.JwtAuthenticationResponse;
+import com.example.internship.dto.authenticationAuthorisation.SignInRequest;
+import com.example.internship.dto.authenticationAuthorisation.SignUpRequest;
+import com.example.internship.dao.entity.Role;
+import com.example.internship.dao.entity.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

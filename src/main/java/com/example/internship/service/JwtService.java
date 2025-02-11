@@ -1,7 +1,7 @@
 package com.example.internship.service;
 
 import com.example.internship.configurationProperties.TokenProperties;
-import com.example.internship.dao.Users;
+import com.example.internship.dao.entity.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

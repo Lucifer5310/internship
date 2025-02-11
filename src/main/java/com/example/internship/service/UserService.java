@@ -1,7 +1,7 @@
 package com.example.internship.service;
 
-import com.example.internship.dao.Users;
-import com.example.internship.repository.UserRepository;
+import com.example.internship.dao.entity.Users;
+import com.example.internship.dao.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -68,5 +68,14 @@ public class UserService {
     public Users getCurrentUser() {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);
+    }
+
+    @Transactional
+    public Users createUser(Long id, String name, String email) {
+        Users user = new Users();
+        user.setId(id);
+        user.setUsername(name);
+        user.setEmail(email);
+        return userRepository.save(user);
     }
 }

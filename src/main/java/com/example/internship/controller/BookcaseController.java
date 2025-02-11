@@ -1,11 +1,11 @@
 package com.example.internship.controller;
 
 
-import com.example.internship.controller.dto.bookcase.BookcaseCreateRequest;
-import com.example.internship.controller.dto.bookcase.BookcaseCreateResponse;
-import com.example.internship.controller.dto.bookcase.BookcaseEditRequest;
-import com.example.internship.controller.dto.bookcase.BookcaseEditResponse;
-import com.example.internship.dao.Bookcase;
+import com.example.internship.dto.bookcase.BookcaseCreateRequest;
+import com.example.internship.dto.bookcase.BookcaseCreateResponse;
+import com.example.internship.dto.bookcase.BookcaseEditRequest;
+import com.example.internship.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.facade.BookcaseFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

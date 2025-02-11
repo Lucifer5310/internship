@@ -1,8 +1,8 @@
 package com.example.internship.service;
 
-import com.example.internship.dao.Author;
-import com.example.internship.dao.Book;
-import com.example.internship.repository.AuthorRepository;
+import com.example.internship.dao.entity.Author;
+import com.example.internship.dao.entity.Book;
+import com.example.internship.dao.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

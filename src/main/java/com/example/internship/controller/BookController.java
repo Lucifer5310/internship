@@ -1,13 +1,12 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.book.BookCreateRequest;
-import com.example.internship.controller.dto.book.BookCreateResponse;
-import com.example.internship.controller.dto.book.BookEditRequest;
-import com.example.internship.controller.dto.book.BookEditResponse;
-import com.example.internship.dao.Book;
+import com.example.internship.dto.book.BookCreateRequest;
+import com.example.internship.dto.book.BookCreateResponse;
+import com.example.internship.dto.book.BookEditRequest;
+import com.example.internship.dto.book.BookEditResponse;
+import com.example.internship.dao.entity.Book;
 import com.example.internship.facade.BookFacade;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

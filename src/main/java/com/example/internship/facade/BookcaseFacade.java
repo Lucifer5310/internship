@@ -1,10 +1,10 @@
 package com.example.internship.facade;
 
-import com.example.internship.controller.dto.bookcase.BookcaseCreateRequest;
-import com.example.internship.controller.dto.bookcase.BookcaseCreateResponse;
-import com.example.internship.controller.dto.bookcase.BookcaseEditRequest;
-import com.example.internship.controller.dto.bookcase.BookcaseEditResponse;
-import com.example.internship.dao.Bookcase;
+import com.example.internship.dto.bookcase.BookcaseCreateRequest;
+import com.example.internship.dto.bookcase.BookcaseCreateResponse;
+import com.example.internship.dto.bookcase.BookcaseEditRequest;
+import com.example.internship.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.service.BookcaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

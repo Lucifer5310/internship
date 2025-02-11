@@ -1,8 +1,8 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.users.UserEditRequest;
-import com.example.internship.controller.dto.users.UserEditResponse;
-import com.example.internship.dao.Users;
+import com.example.internship.dto.users.UserEditRequest;
+import com.example.internship.dto.users.UserEditResponse;
+import com.example.internship.dao.entity.Users;
 import com.example.internship.facade.UsersFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

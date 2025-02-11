@@ -1,8 +1,8 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.authenticationAuthorisation.JwtAuthenticationResponse;
-import com.example.internship.controller.dto.authenticationAuthorisation.SignInRequest;
-import com.example.internship.controller.dto.authenticationAuthorisation.SignUpRequest;
+import com.example.internship.dto.authenticationAuthorisation.JwtAuthenticationResponse;
+import com.example.internship.dto.authenticationAuthorisation.SignInRequest;
+import com.example.internship.dto.authenticationAuthorisation.SignUpRequest;
 import com.example.internship.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

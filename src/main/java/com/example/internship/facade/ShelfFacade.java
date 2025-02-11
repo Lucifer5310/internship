@@ -1,10 +1,10 @@
 package com.example.internship.facade;
 
-import com.example.internship.controller.dto.shelf.ShelfCreateRequest;
-import com.example.internship.controller.dto.shelf.ShelfCreateResponse;
-import com.example.internship.controller.dto.shelf.ShelfEditRequest;
-import com.example.internship.controller.dto.shelf.ShelfEditResponse;
-import com.example.internship.dao.Shelf;
+import com.example.internship.dto.shelf.ShelfCreateRequest;
+import com.example.internship.dto.shelf.ShelfCreateResponse;
+import com.example.internship.dto.shelf.ShelfEditRequest;
+import com.example.internship.dto.shelf.ShelfEditResponse;
+import com.example.internship.dao.entity.Shelf;
 import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

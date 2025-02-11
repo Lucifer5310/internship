@@ -1,10 +1,10 @@
 package com.example.internship.controller;
 
-import com.example.internship.controller.dto.shelf.ShelfCreateRequest;
-import com.example.internship.controller.dto.shelf.ShelfCreateResponse;
-import com.example.internship.controller.dto.shelf.ShelfEditRequest;
-import com.example.internship.controller.dto.shelf.ShelfEditResponse;
-import com.example.internship.dao.Shelf;
+import com.example.internship.dto.shelf.ShelfCreateRequest;
+import com.example.internship.dto.shelf.ShelfCreateResponse;
+import com.example.internship.dto.shelf.ShelfEditRequest;
+import com.example.internship.dto.shelf.ShelfEditResponse;
+import com.example.internship.dao.entity.Shelf;
 import com.example.internship.facade.ShelfFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,11 +1,11 @@
 package com.example.internship.facade;
 
 
-import com.example.internship.controller.dto.author.AuthorCreateRequest;
-import com.example.internship.controller.dto.author.AuthorCreateResponse;
-import com.example.internship.controller.dto.author.AuthorEditRequest;
-import com.example.internship.controller.dto.author.AuthorEditResponse;
-import com.example.internship.dao.Author;
+import com.example.internship.dto.author.AuthorCreateRequest;
+import com.example.internship.dto.author.AuthorCreateResponse;
+import com.example.internship.dto.author.AuthorEditRequest;
+import com.example.internship.dto.author.AuthorEditResponse;
+import com.example.internship.dao.entity.Author;
 import com.example.internship.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
