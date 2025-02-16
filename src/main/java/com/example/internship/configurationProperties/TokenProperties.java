@@ -8,6 +8,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties("token")
 public class TokenProperties {
-
     private String jwt;
 }

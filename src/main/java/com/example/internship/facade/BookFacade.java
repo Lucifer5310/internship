@@ -26,7 +26,7 @@ public class BookFacade {
     }
 
     public BookCreateResponse savePostRequest(BookCreateRequest bookCreateRequest){
-        final Book book = new Book();
+        final Book book = new Book(); // why final?
         book.setName(bookCreateRequest.getName());
         book.setGenre(bookCreateRequest.getGenre());
         book.setRead(bookCreateRequest.isRead());

@@ -17,6 +17,7 @@ public class BookcaseController {
 
     private final BookcaseFacade bookcaseFacade;
 
+    // Return entity is bad practice, create dto
     @GetMapping
     public Iterable<Bookcase> findAllBookcase() {
         return bookcaseFacade.findAll();

@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+
+//Why so many @Transactional?
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -41,6 +43,7 @@ public class UserService {
         return byId.orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    //No usages, delete?
     @Transactional
     public Users create (Users users) {
         if (userRepository.existsByUsername(users.getUsername())) {
@@ -65,11 +68,15 @@ public class UserService {
         return this::getByUsername;
     }
 
+
+    // No usages, delete?
     public Users getCurrentUser() {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);
     }
 
+
+    // This method used only in tests, why not to put it in test directory?
     @Transactional
     public Users createUser(Long id, String name, String email) {
         Users user = new Users();

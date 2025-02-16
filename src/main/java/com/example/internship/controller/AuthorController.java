@@ -16,6 +16,8 @@ public class AuthorController {
 
     private final AuthorFacade authorFacade;
 
+    // Return entity is bad practice, create dto
+    // And better to create pagination
     @GetMapping
     public Iterable<Author> findAllCall() {
         return authorFacade.findAll();

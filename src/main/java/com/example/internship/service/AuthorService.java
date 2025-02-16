@@ -18,6 +18,8 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
+    // very strange deleting of entity (you use CascadeType.ALL which includes CascadeType.REMOVE, so why you do something like that author.getBooks().clear())
+    // Also too many @Transactional
     @Transactional
     public void delete(Long id) {
         Optional<Author> authorOptional = authorRepository.findById(id);
@@ -34,12 +36,12 @@ public class AuthorService {
             authorRepository.deleteById(id);
             log.info("Author is deleted");
         } else {
-            throw new RuntimeException("Author with ID " + id + " not found");
+            throw new RuntimeException("Author with ID " + id + " not found"); // specify exception
         }
     }
 
     @Transactional
-    public Author save(Author author){
+    public Author save(Author author) {
         return authorRepository.save(author);
     }
 

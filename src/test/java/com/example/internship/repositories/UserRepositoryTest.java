@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @ContextConfiguration(classes = TestContainerConfig.class)
-public class UserRepositoryTest {
+public class UserRepositoryTest { // remove public
 
     @Autowired
     private UserRepository userRepository;
 
     @Test
-    public void testSaveAndFindUser() {
+    public void testSaveAndFindUser() { // remove public
         Users user = new Users();
         user.setId(5L);
         user.setUsername("Test User");

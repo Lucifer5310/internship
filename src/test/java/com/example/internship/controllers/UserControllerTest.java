@@ -20,16 +20,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(UsersController.class)
 @ContextConfiguration(classes = TestContainerConfig.class)
 @AutoConfigureMockMvc
-public class UserControllerTest {
+public class UserControllerTest {  // remove public
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockBean        // Use MockitoBean
     private UserService userService;
 
     @Test
-    public void testGetUser() throws Exception {
+    public void testGetUser() throws Exception { // also remove public
         Users user = new Users();
         user.setId(10L);
         user.setUsername("John Doe");
