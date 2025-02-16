@@ -18,6 +18,8 @@ public class BookcaseService {
 
     private final BookcaseRepository bookcaseService;
 
+    // very strange deleting of entity (you use CascadeType.ALL which includes CascadeType.REMOVE, so why you do something like that  bookcase.getShelfs().clear())
+    // Also too many @Transactional
     @Transactional
     public void delete(Long id) {
         Optional<Bookcase> optionalBookcase = bookcaseService.findById(id);
@@ -34,7 +36,7 @@ public class BookcaseService {
             bookcaseService.deleteById(id);
             log.info("Bookcase is deleted");
         } else {
-            throw new RuntimeException("Bookcase with ID " + id + " not found");
+            throw new RuntimeException("Bookcase with ID " + id + " not found"); // specify exception
         }
     }
 

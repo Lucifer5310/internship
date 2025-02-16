@@ -16,6 +16,7 @@ public class ClientController {
 
     private final ClientFacade clientFacade;
 
+    // Return entity is bad practice, create dto
     @GetMapping
     public Iterable<Client> findAllClient() {
         return clientFacade.findAll();

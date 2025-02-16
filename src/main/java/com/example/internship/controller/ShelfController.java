@@ -16,6 +16,7 @@ public class ShelfController {
 
     private final ShelfFacade shelfFacade;
 
+    // Return entity is bad practice, create dto
     @GetMapping
     public Iterable<Shelf> findAllShelf() {
         return shelfFacade.findAll();

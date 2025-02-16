@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+// Too many @Transactional
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,7 +40,7 @@ public class ShelfService {
             shelfRepository.deleteById(id);
             log.info("Shelf is deleted");
         } else {
-            throw new RuntimeException("Shelf with ID " + id + " not found");
+            throw new RuntimeException("Shelf with ID " + id + " not found"); // specify exception
         }
     }
 

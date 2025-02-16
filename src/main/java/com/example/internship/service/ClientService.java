@@ -22,7 +22,7 @@ public class ClientService {
     public void delete(Long id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
 
-        if (optionalClient.isPresent()) {
+        if (optionalClient.isPresent()) { // better to use orElseThrow() than checking isPresent()
             Client client = optionalClient.get();
 
             for (Book book : client.getBooks()) {
@@ -34,11 +34,11 @@ public class ClientService {
                 client.getUser().setClient(null);
             }
 
-            clientRepository.save(client);
+            clientRepository.save(client);    // why firstly you save and then delete
             clientRepository.deleteById(id);
             log.info("Client is deleted");
         } else {
-            throw new RuntimeException("Client with ID " + id + " not found");
+            throw new RuntimeException("Client with ID " + id + " not found"); // specify exception
         }
     }
 

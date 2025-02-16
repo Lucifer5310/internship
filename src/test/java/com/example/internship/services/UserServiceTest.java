@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestContainerConfig.class)
-public class UserServiceTest {
+public class UserServiceTest { // remove public
 
     @Autowired
     private UserService userService;
 
     @Test
-    public void testCreateUser() {
+    public void testCreateUser() { // remove public
         Users users = userService.createUser(6L,"John Doe", "john@example.com");
 
         assertNotNull(users);

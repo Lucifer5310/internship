@@ -14,13 +14,14 @@ public class UsersController {
 
     private final UsersFacade userFacade;
 
+    // Return entity is bad practice, create dto
     @GetMapping
     public Iterable<Users> findAllUsers() {
         return userFacade.findAll();
     }
 
     @PutMapping(value = "/{id}")
-    public UserEditResponse replaceUser(@RequestBody UserEditRequest userEditRequest,
+    public UserEditResponse replaceUser(@RequestBody UserEditRequest userEditRequest, // think about validation
                                         @PathVariable long id) {
         return userFacade.saveEditRequest(userEditRequest, id);
     }

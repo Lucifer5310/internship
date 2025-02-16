@@ -26,7 +26,7 @@ public class BookcaseFacade {
     }
 
     public BookcaseCreateResponse savePostRequest(BookcaseCreateRequest bookcaseCreateRequest){
-        final Bookcase bookcase = new Bookcase();
+        final Bookcase bookcase = new Bookcase(); // why final?
         bookcase.setNumber(bookcaseCreateRequest.getNumber());
 
         Bookcase saved = bookcaseService.save(bookcase);

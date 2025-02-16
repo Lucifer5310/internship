@@ -2,6 +2,8 @@ package com.example.internship.dto.author;
 
 import lombok.*;
 
+
+// Builder + setters? Choose one
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

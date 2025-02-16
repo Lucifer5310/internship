@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.List;
 
+
+// Better to use annotation @Column for every field and with help of this annotation add additional validation for dao layer and name columns.
+// This comment for every entity
 @Entity
 @Table(name = "author")
 @Builder
@@ -21,7 +24,7 @@ public class Author {
     @Column(name = "id")
     private long id;
     private String name;
-    private long dateOfBirth;
+    private long dateOfBirth; // Why not LocalDate?
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Book> books;

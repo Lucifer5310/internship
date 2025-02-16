@@ -17,6 +17,8 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    // very strange deleting of entity
+    // Also too many @Transactional
     @Transactional
     public void delete(Long id) {
         Optional<Book> bookOptional = bookRepository.findById(id);
@@ -42,7 +44,7 @@ public class BookService {
             bookRepository.deleteById(id);
             log.info("Book is deleted");
         } else {
-            throw new RuntimeException("Book with ID " + id + " not found");
+            throw new RuntimeException("Book with ID " + id + " not found"); // specify exception
         }
     }
 
