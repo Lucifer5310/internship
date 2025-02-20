@@ -5,6 +5,7 @@ import com.example.internship.service.FeignImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +20,7 @@ public class FeignImageServiceController {
     private final FeignImageService feignImageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadImage(@RequestPart("file") MultipartFile file) {
         try {
             String imageId = feignImageService.uploadImage(file);
             return ResponseEntity.ok(imageId);
@@ -32,7 +33,9 @@ public class FeignImageServiceController {
     public ResponseEntity<Resource> getImage(@PathVariable String id) {
         try {
             Resource imageResource = feignImageService.downloadImage(id);
-            return ResponseEntity.ok(imageResource);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(imageResource);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }

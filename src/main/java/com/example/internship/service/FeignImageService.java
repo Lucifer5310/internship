@@ -3,6 +3,7 @@ package com.example.internship.service;
 import com.example.internship.config.FeignImageServiceClient;
 import com.example.internship.dto.ImageMetadata;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,9 @@ public class FeignImageService {
     }
 
     public Resource downloadImage(String id) {
-        ResponseEntity<Resource> response = imageServiceClient.getImage(id);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return response.getBody();
+        ResponseEntity<byte[]> response = imageServiceClient.getImage(id);
+        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+            return new ByteArrayResource(response.getBody());
         }
         throw new RuntimeException("Ошибка получения изображения");
     }
