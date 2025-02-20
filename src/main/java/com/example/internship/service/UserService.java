@@ -69,13 +69,4 @@ public class UserService {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getByUsername(username);
     }
-
-    @Transactional
-    public Users createUser(Long id, String name, String email) {
-        Users user = new Users();
-        user.setId(id);
-        user.setUsername(name);
-        user.setEmail(email);
-        return userRepository.save(user);
-    }
 }
