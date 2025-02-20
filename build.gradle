@@ -60,7 +60,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
+    //Feign Client
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.2.0'
+
+    //Kafka
+    implementation 'org.springframework.kafka:spring-kafka'
 }
 
 tasks.withType(JavaCompile) {
