@@ -1,13 +1,11 @@
 package com.example.internship.controller;
 
-import com.example.internship.dto.author.AuthorCreateRequest;
-import com.example.internship.dto.author.AuthorCreateResponse;
-import com.example.internship.dto.author.AuthorEditRequest;
-import com.example.internship.dto.author.AuthorEditResponse;
-import com.example.internship.dao.entity.Author;
+import com.example.internship.dto.author.*;
 import com.example.internship.facade.AuthorFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/author")
@@ -17,23 +15,23 @@ public class AuthorController {
     private final AuthorFacade authorFacade;
 
     @GetMapping
-    public Iterable<Author> findAllCall() {
+    public Iterable<AuthorGetResponse> findAllAuthor() {
         return authorFacade.findAll();
     }
 
     @PostMapping
-    public AuthorCreateResponse addOneCall(@RequestBody AuthorCreateRequest authorCreateRequest){
+    public AuthorCreateResponse addOneAuthor(@RequestBody AuthorCreateRequest authorCreateRequest){
         return authorFacade.savePostRequest(authorCreateRequest);
     }
 
     @PutMapping(value = "/{id}")
-    public AuthorEditResponse replaceCall(@RequestBody AuthorEditRequest authorEditRequest,
+    public AuthorEditResponse replaceAuthor(@RequestBody AuthorEditRequest authorEditRequest,
                                           @PathVariable long id) {
         return authorFacade.saveEditRequest(authorEditRequest, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCall(@PathVariable long id) {
+    public void deleteAuthor(@PathVariable long id) {
         authorFacade.delete(id);
     }
 }

@@ -1,10 +1,6 @@
 package com.example.internship.controller;
 
-import com.example.internship.dto.shelf.ShelfCreateRequest;
-import com.example.internship.dto.shelf.ShelfCreateResponse;
-import com.example.internship.dto.shelf.ShelfEditRequest;
-import com.example.internship.dto.shelf.ShelfEditResponse;
-import com.example.internship.dao.entity.Shelf;
+import com.example.internship.dto.shelf.*;
 import com.example.internship.facade.ShelfFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +13,7 @@ public class ShelfController {
     private final ShelfFacade shelfFacade;
 
     @GetMapping
-    public Iterable<Shelf> findAllShelf() {
+    public Iterable<ShelfGetResponse> findAllShelf() {
         return shelfFacade.findAll();
     }
 

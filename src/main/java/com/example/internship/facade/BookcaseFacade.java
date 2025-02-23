@@ -1,14 +1,14 @@
 package com.example.internship.facade;
 
-import com.example.internship.dto.bookcase.BookcaseCreateRequest;
-import com.example.internship.dto.bookcase.BookcaseCreateResponse;
-import com.example.internship.dto.bookcase.BookcaseEditRequest;
-import com.example.internship.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dto.bookcase.*;
 import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.service.BookcaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +17,11 @@ public class BookcaseFacade {
 
     private final BookcaseService bookcaseService;
 
-    public Iterable<Bookcase> findAll() {
-        return bookcaseService.findAll();
+    public Iterable<BookcaseGetResponse> findAll() {
+        return StreamSupport.stream(bookcaseService.findAll().spliterator(), false)
+                .map(bookcase -> new BookcaseGetResponse(
+                        bookcase.getNumber()))
+                .collect(Collectors.toList());
     }
 
     public void delete(long id) {

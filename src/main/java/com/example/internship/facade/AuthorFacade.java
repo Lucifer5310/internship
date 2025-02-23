@@ -1,15 +1,15 @@
 package com.example.internship.facade;
 
 
-import com.example.internship.dto.author.AuthorCreateRequest;
-import com.example.internship.dto.author.AuthorCreateResponse;
-import com.example.internship.dto.author.AuthorEditRequest;
-import com.example.internship.dto.author.AuthorEditResponse;
+import com.example.internship.dto.author.*;
 import com.example.internship.dao.entity.Author;
 import com.example.internship.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -18,8 +18,13 @@ public class AuthorFacade {
 
     private final AuthorService authorService;
 
-    public Iterable<Author> findAll() {
-        return authorService.findAll();
+    public Iterable<AuthorGetResponse> findAll() {
+
+        return StreamSupport.stream(authorService.findAll().spliterator(), false)
+                .map(author -> new AuthorGetResponse(
+                        author.getName(),
+                        author.getDateOfBirth()))
+                .collect(Collectors.toList());
     }
 
     public void delete(long id) {

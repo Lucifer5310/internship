@@ -3,11 +3,15 @@ package com.example.internship.facade;
 import com.example.internship.dto.users.UserEditRequest;
 import com.example.internship.dto.users.UserEditResponse;
 import com.example.internship.dao.entity.Users;
+import com.example.internship.dto.users.UserGetResponse;
 import com.example.internship.service.ClientService;
 import com.example.internship.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +21,15 @@ public class UsersFacade {
     private final UserService userService;
     private final ClientService clientService;
 
-    public Iterable<Users> findAll() {
-        return userService.findAll();
+    public Iterable<UserGetResponse> findAll() {
+        return StreamSupport.stream(userService.findAll().spliterator(), false)
+                .map(users -> new UserGetResponse(
+                        users.getUsername(),
+                        users.getEmail(),
+                        users.getRole(),
+                        users.getClient() != null ? users.getClient().getFirstName() : "",
+                        users.getClient() != null ? users.getClient().getMiddleName() : ""))
+                .collect(Collectors.toList());
     }
 
     public void delete(long id) {

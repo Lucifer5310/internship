@@ -1,14 +1,15 @@
 package com.example.internship.facade;
 
-import com.example.internship.dto.client.ClientCreateRequest;
-import com.example.internship.dto.client.ClientCreateResponse;
-import com.example.internship.dto.client.ClientEditRequest;
-import com.example.internship.dto.client.ClientEditResponse;
+import com.example.internship.dto.client.*;
 import com.example.internship.dao.entity.Client;
+import com.example.internship.dao.entity.Book;
 import com.example.internship.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +18,15 @@ public class ClientFacade {
 
     private final ClientService clientService;
 
-    public Iterable<Client> findAll() {
-        return clientService.findAll();
+    public Iterable<ClientGetResponse> findAll() {
+        return StreamSupport.stream(clientService.findAll().spliterator(), false)
+                .map(client -> new ClientGetResponse(
+                        client.getFirstName(),
+                        client.getMiddleName(),
+                        client.getBooks().stream()
+                                .map(Book::getName)
+                                .collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
 
     public void delete(Long id) {

@@ -1,14 +1,16 @@
 package com.example.internship.facade;
 
-import com.example.internship.dto.shelf.ShelfCreateRequest;
-import com.example.internship.dto.shelf.ShelfCreateResponse;
-import com.example.internship.dto.shelf.ShelfEditRequest;
-import com.example.internship.dto.shelf.ShelfEditResponse;
+import com.example.internship.dao.entity.Book;
+import com.example.internship.dto.client.ClientGetResponse;
+import com.example.internship.dto.shelf.*;
 import com.example.internship.dao.entity.Shelf;
 import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +19,15 @@ public class ShelfFacade {
 
     private final ShelfService shelfService;
 
-    public Iterable<Shelf> findAll() {
-        return shelfService.findAll();
+    public Iterable<ShelfGetResponse> findAll() {
+        return StreamSupport.stream(shelfService.findAll().spliterator(), false)
+                .map(shelf -> new ShelfGetResponse(
+                        shelf.getName(),
+                        shelf.getBookcase().getNumber(),
+                        shelf.getBooks().stream()
+                                .map(Book::getName)
+                                .collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
 
     public void delete(long id) {

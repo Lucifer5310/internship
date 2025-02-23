@@ -1,10 +1,7 @@
 package com.example.internship.controller;
 
 
-import com.example.internship.dto.bookcase.BookcaseCreateRequest;
-import com.example.internship.dto.bookcase.BookcaseCreateResponse;
-import com.example.internship.dto.bookcase.BookcaseEditRequest;
-import com.example.internship.dto.bookcase.BookcaseEditResponse;
+import com.example.internship.dto.bookcase.*;
 import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.facade.BookcaseFacade;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +15,7 @@ public class BookcaseController {
     private final BookcaseFacade bookcaseFacade;
 
     @GetMapping
-    public Iterable<Bookcase> findAllBookcase() {
+    public Iterable<BookcaseGetResponse> findAllBookcase() {
         return bookcaseFacade.findAll();
     }
 

@@ -1,14 +1,15 @@
 package com.example.internship.facade;
 
-import com.example.internship.dto.book.BookCreateRequest;
-import com.example.internship.dto.book.BookCreateResponse;
-import com.example.internship.dto.book.BookEditRequest;
-import com.example.internship.dto.book.BookEditResponse;
+import com.example.internship.dto.author.AuthorGetResponse;
+import com.example.internship.dto.book.*;
 import com.example.internship.dao.entity.Book;
 import com.example.internship.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +18,16 @@ public class BookFacade {
 
     private final BookService bookService;
 
-    public Iterable<Book> findAll() {
-        return bookService.findAll();
+    public Iterable<BookGetResponse> findAll() {
+        return StreamSupport.stream(bookService.findAll().spliterator(), false)
+                .map(book -> new BookGetResponse(
+                        book.getName(),
+                        book.getGenre(),
+                        book.getAuthor().getName(),
+                        book.getShelf().getName(),
+                        book.getShelf().getBookcase().getNumber(),
+                        book.isRead()))
+                .collect(Collectors.toList());
     }
 
     public void delete(long id) {
