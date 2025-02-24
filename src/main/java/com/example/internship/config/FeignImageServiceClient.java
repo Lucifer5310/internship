@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@FeignClient(name = "image-service", url = "http://localhost:8081", configuration = FeignMultipartConfig.class)
+@FeignClient(name = "image-service", url = "http://imageservice:8081", configuration = FeignMultipartConfig.class)
 public interface FeignImageServiceClient {
 
     @PostMapping(value = "/images/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

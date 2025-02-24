@@ -1,5 +1,6 @@
 package com.example.internship.facade;
 
+import com.example.internship.dao.entity.Shelf;
 import com.example.internship.dto.bookcase.*;
 import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.service.BookcaseService;
@@ -20,7 +21,10 @@ public class BookcaseFacade {
     public Iterable<BookcaseGetResponse> findAll() {
         return StreamSupport.stream(bookcaseService.findAll().spliterator(), false)
                 .map(bookcase -> new BookcaseGetResponse(
-                        bookcase.getNumber()))
+                        bookcase.getNumber(),
+                        bookcase.getShelfs().stream()
+                                .map(Shelf::getName)
+                                .collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
 

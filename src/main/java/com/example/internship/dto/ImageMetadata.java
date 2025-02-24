@@ -12,5 +12,5 @@ public class ImageMetadata {
     private String id;
     private String filename;
     private Date uploadDate;
-    private long size;
+    private long length;
 }
