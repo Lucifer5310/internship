@@ -1,9 +1,10 @@
 package com.example.internship.service;
 
-import com.example.internship.dto.authenticationAuthorisation.JwtAuthenticationResponse;
+import com.example.internship.dao.entity.Client;
+import com.example.internship.dto.jwt.JwtAuthenticationResponse;
 import com.example.internship.dto.authenticationAuthorisation.SignInRequest;
 import com.example.internship.dto.authenticationAuthorisation.SignUpRequest;
-import com.example.internship.dao.entity.Role;
+import com.example.internship.dao.entity.enumerate.Role;
 import com.example.internship.dao.entity.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,12 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthenticationService {
 
     private final UserService userService;
+    private final ClientService clientService;
+    private final RefreshTokenService refreshTokenService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     @Transactional
-    public JwtAuthenticationResponse signUp(SignUpRequest signUpRequest) {
+    public void signUp(SignUpRequest signUpRequest) {
         var user = Users.builder()
                 .username(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
@@ -30,11 +33,16 @@ public class AuthenticationService {
                 .role(Role.ROLE_USER)
                 .client(null)
                 .build();
-
         userService.save(user);
 
-        var jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
+        var client = Client.builder()
+                .firstName(signUpRequest.getFirstName())
+                .middleName(signUpRequest.getMiddleName())
+                .build();
+        clientService.save(client);
+
+        user.setClient(client);
+        userService.save(user);
     }
 
     @Transactional
@@ -42,10 +50,10 @@ public class AuthenticationService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 signUpRequest.getUsername(), signUpRequest.getPassword()));
 
-        var user = userService.userDetailsService().loadUserByUsername(signUpRequest.getUsername());
-        var jwt = jwtService.generateToken(user);
+        var jwt = jwtService.generateToken(signUpRequest.getUsername(), false);
+        String refreshToken = refreshTokenService.createRefreshToken(signUpRequest.getUsername()).getToken();
 
-        return new JwtAuthenticationResponse(jwt);
+        return new JwtAuthenticationResponse(jwt, refreshToken);
     }
 }
 

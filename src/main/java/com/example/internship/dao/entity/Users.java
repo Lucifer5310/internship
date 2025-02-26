@@ -1,5 +1,6 @@
 package com.example.internship.dao.entity;
 
+import com.example.internship.dao.entity.enumerate.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,6 +34,9 @@ public class Users implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<RefreshToken> refreshTokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

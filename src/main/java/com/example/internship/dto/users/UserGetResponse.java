@@ -1,6 +1,6 @@
 package com.example.internship.dto.users;
 
-import com.example.internship.dao.entity.Role;
+import com.example.internship.dao.entity.enumerate.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

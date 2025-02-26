@@ -1,4 +1,4 @@
-package com.example.internship.dto.authenticationAuthorisation;
+package com.example.internship.dto.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JwtAuthenticationResponse {
 
-    private String token;
+    private String accessToken;
+    private String refreshToken;
 }
