@@ -47,7 +47,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**").permitAll()
                         .requestMatchers("/users").hasRole("ADMIN")
                         .requestMatchers("/author", "/author/**", "/book", "/book/**", "/bookcase", "/bookcase/**",
-                                "/client", "/client/**", "/shelf", "/shelf/**", "/images", "/images/**").hasAnyRole("ADMIN", "USER")
+                                "/client", "/client/**", "/shelf", "/shelf/**",
+                                "/images/all", "/images/download/**", "/images/delete/**", "/images/upload", "/images/metadata").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider())

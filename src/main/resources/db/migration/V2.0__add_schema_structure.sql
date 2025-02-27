@@ -6,7 +6,7 @@ CREATE TABLE client (
 
 CREATE TABLE author (
     id bigint PRIMARY KEY NOT NULL,
-    name varchar(31) not null,
+    name varchar(255) not null,
     date_of_birth bigint not null
 );
 CREATE TABLE bookcase (
@@ -41,7 +41,8 @@ CREATE TABLE book (
     id bigint PRIMARY KEY NOT NULL,
     genre varchar(63) not null,
     is_read boolean not null,
-    name varchar(63) not null,
+    image_name varchar(255) not null,
+    name varchar(255) not null,
     author_id bigint,
     client_id bigint,
     shelf_id bigint

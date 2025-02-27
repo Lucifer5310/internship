@@ -20,6 +20,7 @@ public class Book {
     private long id;
     private String name;
     private String genre;
+    private String imageName;
     private boolean isRead;
 
     @ManyToOne

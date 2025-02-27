@@ -1,4 +1,4 @@
-package com.example.internship.dto;
+package com.example.internship.dto.image;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

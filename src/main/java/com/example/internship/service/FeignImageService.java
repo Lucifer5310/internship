@@ -1,7 +1,8 @@
 package com.example.internship.service;
 
 import com.example.internship.config.FeignImageServiceClient;
-import com.example.internship.dto.ImageMetadata;
+import com.example.internship.dto.image.ImageData;
+import com.example.internship.dto.image.ImageMetadata;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -25,8 +26,9 @@ public class FeignImageService {
         throw new RuntimeException("Ошибка загрузки изображения");
     }
 
-    public Resource downloadImage(String id) {
-        ResponseEntity<byte[]> response = imageServiceClient.getImage(id);
+    // Изменённый метод: скачивание по имени файла
+    public Resource downloadImageByFilename(String filename) {
+        ResponseEntity<byte[]> response = imageServiceClient.getImageByFilename(filename);
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             return new ByteArrayResource(response.getBody());
         }
@@ -41,8 +43,18 @@ public class FeignImageService {
         throw new RuntimeException("Ошибка получения метаданных изображений");
     }
 
-    public void deleteImage(String id) {
-        ResponseEntity<Void> response = imageServiceClient.deleteImage(id);
+    // Новый метод: получение всех картинок с содержимым
+    public List<ImageData> getAllImages() {
+        ResponseEntity<List<ImageData>> response = imageServiceClient.getAllImages();
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();
+        }
+        throw new RuntimeException("Ошибка получения всех изображений");
+    }
+
+    // Изменённый метод: удаление по имени файла
+    public void deleteImageByFilename(String filename) {
+        ResponseEntity<Void> response = imageServiceClient.deleteImageByFilename(filename);
         if (!response.getStatusCode().is2xxSuccessful()) {
             throw new RuntimeException("Ошибка удаления изображения");
         }

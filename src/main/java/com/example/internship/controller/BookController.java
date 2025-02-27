@@ -17,6 +17,12 @@ public class BookController {
         return bookFacade.findAll();
     }
 
+    @GetMapping(value = "/{id}")
+    public BookGetByIdResponse findOneBookById(@PathVariable long id) {
+        return bookFacade.findById(id);
+
+    }
+
     @PostMapping
     public BookCreateResponse addOneBook(@RequestBody BookCreateRequest bookCreateRequest){
         return bookFacade.savePostRequest(bookCreateRequest);

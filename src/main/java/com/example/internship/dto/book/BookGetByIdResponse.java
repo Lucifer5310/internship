@@ -1,13 +1,15 @@
 package com.example.internship.dto.book;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
 @Builder
-public class BookEditResponse {
+public class BookGetByIdResponse {
 
     private String name;
     private String genre;
