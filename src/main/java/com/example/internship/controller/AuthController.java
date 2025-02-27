@@ -43,8 +43,8 @@ public class AuthController {
 
         String username = jwtService.extractUsername(request.getRefreshToken());
         String newAccessToken = jwtService.generateToken(username, false);
-        String newRefreshToken = refreshTokenService.createRefreshToken(username).getToken();
+        //String newRefreshToken = refreshTokenService.createRefreshToken(username).getToken();
 
-        return ResponseEntity.ok(new RefreshTokenResponse(newAccessToken, newRefreshToken));
+        return ResponseEntity.ok(new RefreshTokenResponse(newAccessToken));
     }
 }

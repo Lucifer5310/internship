@@ -60,4 +60,16 @@ public class ClientFacade {
                 .middleName(saved.getMiddleName())
                 .build();
     }
+
+    public ClientGetResponse findById (long id) {
+        Client client = clientService.findById(id);
+
+        return ClientGetResponse.builder()
+                .firstName(client.getFirstName())
+                .middleName(client.getMiddleName())
+                .bookNameList(client.getBooks().stream()
+                        .map(Book::getName)
+                        .collect(Collectors.toList()))
+                .build();
+    }
 }

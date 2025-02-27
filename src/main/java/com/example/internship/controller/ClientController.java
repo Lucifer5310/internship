@@ -18,6 +18,11 @@ public class ClientController {
         return clientFacade.findAll();
     }
 
+    @GetMapping(value = "/{id}")
+    public ClientGetResponse findClientById(@PathVariable long id) {
+        return clientFacade.findById(id);
+    }
+
     @PostMapping
     public ClientCreateResponse addOneClient(@RequestBody ClientCreateRequest clientCreateRequest){
         return clientFacade.savePostRequest(clientCreateRequest);
@@ -29,7 +34,7 @@ public class ClientController {
         return clientFacade.saveEditRequest(clientEditRequest, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public void deleteClient(@PathVariable Long id) {
         clientFacade.delete(id);
     }
