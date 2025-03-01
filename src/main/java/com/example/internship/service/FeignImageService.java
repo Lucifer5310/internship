@@ -52,6 +52,22 @@ public class FeignImageService {
         throw new RuntimeException("Ошибка получения всех изображений");
     }
 
+    public byte[] getImageContentByFilename(String filename) {
+        ResponseEntity<byte[]> response = imageServiceClient.getImageContentByFilename(filename);
+        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+            return response.getBody();
+        }
+        throw new RuntimeException("Ошибка получения содержимого изображения");
+    }
+
+    public List<String> getAllImageFilenames() {
+        ResponseEntity<List<String>> response = imageServiceClient.getAllImageFilenames();
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();
+        }
+        throw new RuntimeException("Ошибка получения списка названий изображений");
+    }
+
     // Изменённый метод: удаление по имени файла
     public void deleteImageByFilename(String filename) {
         ResponseEntity<Void> response = imageServiceClient.deleteImageByFilename(filename);

@@ -30,7 +30,6 @@ public class FeignImageServiceController {
         }
     }
 
-    // Изменённый эндпоинт: скачивание по имени файла
     @GetMapping("/download/{filename:.+}")
     public ResponseEntity<Resource> getImageByFilename(@PathVariable String filename) {
         try {
@@ -53,7 +52,6 @@ public class FeignImageServiceController {
         }
     }
 
-    // Новый эндпоинт: получение всех картинок
     @GetMapping("/all")
     public ResponseEntity<List<ImageData>> getAllImages() {
         try {
@@ -64,7 +62,32 @@ public class FeignImageServiceController {
         }
     }
 
-    // Изменённый эндпоинт: удаление по имени файла
+    @GetMapping("/{filename:.+}")
+    public ResponseEntity<byte[]> getImageContentByFilename(@PathVariable String filename) {
+        try {
+            byte[] imageContent = feignImageService.getImageContentByFilename(filename);
+            String contentType = "image/jpeg";
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .body(imageContent);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<String>> getAllImageFilenames() {
+        try {
+            List<String> filenames = feignImageService.getAllImageFilenames();
+            if (filenames.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(filenames);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
     @DeleteMapping("/delete/{filename:.+}")
     public ResponseEntity<Void> deleteImageByFilename(@PathVariable String filename) {
         try {

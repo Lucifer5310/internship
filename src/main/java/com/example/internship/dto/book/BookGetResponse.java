@@ -15,7 +15,7 @@ public class BookGetResponse {
     private String genre;
     private String authorName;
     private String shelfName;
-    private String imageName;
     private int bookcaseNumber;
+    private String imageName;
     private boolean isRead;
 }

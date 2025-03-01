@@ -19,6 +19,12 @@ public interface FeignImageServiceClient {
     @GetMapping(value = "/images/download/{filename:.+}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     ResponseEntity<byte[]> getImageByFilename(@PathVariable("filename") String filename);
 
+    @GetMapping(value = "/images/{filename:.+}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    ResponseEntity<byte[]> getImageContentByFilename(@PathVariable("filename") String filename);
+
+    @GetMapping(value = "/images/list")
+    ResponseEntity<List<String>> getAllImageFilenames();
+
     @GetMapping("/images/metadata")
     ResponseEntity<List<ImageMetadata>> getAllImagesMetadata();
 

@@ -33,8 +33,8 @@ public class BookFacade {
                         book.getGenre(),
                         book.getAuthor().getName(),
                         book.getShelf().getName(),
-                        book.getImageName(),
                         book.getShelf().getBookcase().getNumber(),
+                        book.getImageName(),
                         book.isRead()))
                 .collect(Collectors.toList());
     }
