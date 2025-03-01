@@ -1,14 +1,16 @@
 package com.example.internship.dto.author;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class AuthorGetResponse {
+public class AuthorGetByIdResponse {
 
-    private Long id;
     private String name;
     private long dateOfBirth;
 }

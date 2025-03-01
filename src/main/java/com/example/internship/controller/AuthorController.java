@@ -5,8 +5,6 @@ import com.example.internship.facade.AuthorFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/author")
 @RequiredArgsConstructor
@@ -17,6 +15,11 @@ public class AuthorController {
     @GetMapping
     public Iterable<AuthorGetResponse> findAllAuthor() {
         return authorFacade.findAll();
+    }
+
+    @GetMapping(value = "{id}")
+    public AuthorGetByIdResponse findAuthorById(@PathVariable long id) {
+        return authorFacade.findAuthorBuId(id);
     }
 
     @PostMapping

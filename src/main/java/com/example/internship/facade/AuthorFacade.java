@@ -22,6 +22,7 @@ public class AuthorFacade {
 
         return StreamSupport.stream(authorService.findAll().spliterator(), false)
                 .map(author -> new AuthorGetResponse(
+                        author.getId(),
                         author.getName(),
                         author.getDateOfBirth()))
                 .collect(Collectors.toList());
@@ -56,6 +57,14 @@ public class AuthorFacade {
         return AuthorEditResponse.builder()
                 .name(saved.getName())
                 .dateOfBirth(saved.getDateOfBirth())
+                .build();
+    }
+
+    public AuthorGetByIdResponse findAuthorBuId(long id) {
+        Author author = authorService.findById(id);
+        return AuthorGetByIdResponse.builder()
+                .name(author.getName())
+                .dateOfBirth(author.getDateOfBirth())
                 .build();
     }
 }
