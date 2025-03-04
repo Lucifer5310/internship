@@ -3,7 +3,10 @@ package com.example.internship.controller;
 import com.example.internship.dto.shelf.*;
 import com.example.internship.facade.ShelfFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/shelf")
@@ -11,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class ShelfController {
 
     private final ShelfFacade shelfFacade;
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<String>> findAllShelfName() {
+        return shelfFacade.findAllShelfName();
+    }
 
     @GetMapping
     public Iterable<ShelfGetResponse> findAllShelf() {

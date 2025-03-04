@@ -29,6 +29,7 @@ public class BookFacade {
     public Iterable<BookGetResponse> findAll() {
         return StreamSupport.stream(bookService.findAll().spliterator(), false)
                 .map(book -> new BookGetResponse(
+                        book.getId(),
                         book.getName(),
                         book.getGenre(),
                         book.getAuthor().getName(),
@@ -44,10 +45,17 @@ public class BookFacade {
     }
 
     public BookCreateResponse savePostRequest(BookCreateRequest bookCreateRequest){
+        Shelf shelf = shelfService.findByName(bookCreateRequest.getShelfName());
+        Author author = authorService.findByName(bookCreateRequest.getAuthorName());
+
         final Book book = new Book();
         book.setName(bookCreateRequest.getName());
         book.setGenre(bookCreateRequest.getGenre());
+        book.setImageName(bookCreateRequest.getImageName());
         book.setRead(bookCreateRequest.isRead());
+        book.setShelf(shelf);
+        book.setAuthor(author);
+        book.setClient(null);
 
         Book saved = bookService.save(book);
         log.info("Book is added");

@@ -3,7 +3,10 @@ package com.example.internship.controller;
 import com.example.internship.dto.author.*;
 import com.example.internship.facade.AuthorFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/author")
@@ -11,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class AuthorController {
 
     private final AuthorFacade authorFacade;
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<String>> findAllAuthorName(){
+        return authorFacade.findAllAuthorName();
+    }
 
     @GetMapping
     public Iterable<AuthorGetResponse> findAllAuthor() {

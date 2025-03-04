@@ -5,11 +5,15 @@ import com.example.internship.dao.entity.Book;
 import com.example.internship.dao.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -49,8 +53,20 @@ public class AuthorService {
     }
 
     @Transactional(readOnly = true)
+    public Author findByName(String name) {
+        Optional<Author> byName = authorRepository.findAuthorByName(name);
+        return byName.orElseThrow(() -> new RuntimeException("Author not found"));
+    }
+
+    @Transactional(readOnly = true)
     public Author findById(long id) {
         Optional<Author> byId = authorRepository.findById(id);
-        return byId.orElseThrow(() -> new UsernameNotFoundException("Author not found"));
+        return byId.orElseThrow(() -> new RuntimeException("Author not found"));
+    }
+
+    public List<String> findAllAuthorName() {
+        return authorRepository.findAll().stream()
+                .map(Author::getName)
+                .collect(Collectors.toList());
     }
 }

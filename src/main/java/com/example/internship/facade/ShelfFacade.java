@@ -7,8 +7,10 @@ import com.example.internship.dao.entity.Shelf;
 import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -56,5 +58,10 @@ public class ShelfFacade {
         return ShelfEditResponse.builder()
                 .name(saved.getName())
                 .build();
+    }
+
+    public ResponseEntity<List<String>> findAllShelfName() {
+        List<String> names = shelfService.findAllShelfName();
+        return ResponseEntity.ok(names);
     }
 }

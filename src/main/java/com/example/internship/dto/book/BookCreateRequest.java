@@ -15,7 +15,6 @@ public class BookCreateRequest {
     private String genre;
     private String imageName;
     private boolean isRead;
-    private long author_id;
-    private long client_id;
-    private long shelf_id;
+    private String authorName;
+    private String shelfName;
 }

@@ -6,8 +6,10 @@ import com.example.internship.dao.entity.Author;
 import com.example.internship.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -66,5 +68,10 @@ public class AuthorFacade {
                 .name(author.getName())
                 .dateOfBirth(author.getDateOfBirth())
                 .build();
+    }
+
+    public ResponseEntity<List<String>> findAllAuthorName() {
+        List<String> names = authorService.findAllAuthorName();
+        return ResponseEntity.ok(names);
     }
 }
