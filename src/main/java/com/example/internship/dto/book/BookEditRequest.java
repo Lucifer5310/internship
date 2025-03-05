@@ -13,9 +13,9 @@ public class BookEditRequest {
 
     private String name;
     private String genre;
+    private String authorName;
     private String imageName;
-    private boolean isRead;
-    private Long shelfId;
+    private String shelfName;
     private Long clientId;
-    private Long authorId;
+    private boolean isRead;
 }

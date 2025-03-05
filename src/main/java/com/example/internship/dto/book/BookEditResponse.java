@@ -13,7 +13,6 @@ public class BookEditResponse {
     private String genre;
     private String imageName;
     private boolean isRead;
-    private Long shelfId;
-    private Long clientId;
-    private Long authorId;
+    private String authorName;
+    private String shelfName;
 }

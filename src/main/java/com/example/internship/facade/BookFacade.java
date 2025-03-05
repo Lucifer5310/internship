@@ -69,17 +69,17 @@ public class BookFacade {
 
     public BookEditResponse saveEditRequest(BookEditRequest bookEditRequest, long id){
         Book book = bookService.findById(id);
-        Shelf shelf = shelfService.findById(bookEditRequest.getShelfId());
+        Shelf shelf = shelfService.findByName(bookEditRequest.getShelfName());
+        Author author = authorService.findByName(bookEditRequest.getAuthorName());
         Client client = clientService.findById(bookEditRequest.getClientId());
-        Author author = authorService.findById(bookEditRequest.getAuthorId());
 
         book.setName(bookEditRequest.getName());
         book.setGenre(bookEditRequest.getGenre());
         book.setRead(bookEditRequest.isRead());
         book.setImageName(bookEditRequest.getImageName());
         book.setShelf(shelf);
-        book.setClient(client);
         book.setAuthor(author);
+        book.setClient(client);
 
         Book saved = bookService.save(book);
         log.info("Book is edited");
@@ -89,9 +89,8 @@ public class BookFacade {
                 .genre(saved.getGenre())
                 .imageName(saved.getImageName())
                 .isRead(saved.isRead())
-                .authorId(saved.getAuthor().getId())
-                .clientId(saved.getClient().getId())
-                .shelfId(saved.getShelf().getId())
+                .authorName(saved.getAuthor().getName())
+                .shelfName(saved.getShelf().getName())
                 .build();
     }
 
@@ -101,10 +100,10 @@ public class BookFacade {
                 .name(book.getName())
                 .genre(book.getGenre())
                 .imageName(book.getImageName())
-                .isRead(book.isRead())
-                .authorId(book.getAuthor().getId())
+                .authorName(book.getAuthor().getName())
+                .shelfName(book.getShelf().getName())
                 .clientId(book.getClient().getId())
-                .shelfId(book.getShelf().getId())
+                .isRead(book.isRead())
                 .build();
     }
 }

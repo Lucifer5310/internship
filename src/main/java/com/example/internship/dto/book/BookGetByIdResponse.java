@@ -15,7 +15,7 @@ public class BookGetByIdResponse {
     private String genre;
     private String imageName;
     private boolean isRead;
-    private Long shelfId;
+    private String authorName;
+    private String shelfName;
     private Long clientId;
-    private Long authorId;
 }
