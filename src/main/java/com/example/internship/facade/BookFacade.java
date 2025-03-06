@@ -67,11 +67,14 @@ public class BookFacade {
                 .build();
     }
 
-    public BookEditResponse saveEditRequest(BookEditRequest bookEditRequest, long id){
+    public BookEditResponse saveEditRequest(BookEditRequest bookEditRequest, long id) {
         Book book = bookService.findById(id);
         Shelf shelf = shelfService.findByName(bookEditRequest.getShelfName());
         Author author = authorService.findByName(bookEditRequest.getAuthorName());
-        Client client = clientService.findById(bookEditRequest.getClientId());
+
+        Client client = (bookEditRequest.getClientId() != null)
+                ? clientService.findById(bookEditRequest.getClientId())
+                : null;
 
         book.setName(bookEditRequest.getName());
         book.setGenre(bookEditRequest.getGenre());
@@ -80,7 +83,6 @@ public class BookFacade {
         book.setShelf(shelf);
         book.setAuthor(author);
         book.setClient(client);
-
         Book saved = bookService.save(book);
         log.info("Book is edited");
 
@@ -94,6 +96,7 @@ public class BookFacade {
                 .build();
     }
 
+
     public BookGetByIdResponse findById(long id) {
         Book book = bookService.findById(id);
         return BookGetByIdResponse.builder()
@@ -102,7 +105,7 @@ public class BookFacade {
                 .imageName(book.getImageName())
                 .authorName(book.getAuthor().getName())
                 .shelfName(book.getShelf().getName())
-                .clientId(book.getClient().getId())
+                .clientId(book.getClient() != null ? book.getClient().getId() : null)
                 .isRead(book.isRead())
                 .build();
     }

@@ -13,8 +13,8 @@ public class BookEditRequest {
 
     private String name;
     private String genre;
-    private String authorName;
     private String imageName;
+    private String authorName;
     private String shelfName;
     private Long clientId;
     private boolean isRead;
