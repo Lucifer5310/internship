@@ -3,6 +3,7 @@ package com.example.internship.service;
 import com.example.internship.dao.entity.Book;
 import com.example.internship.dao.entity.Client;
 import com.example.internship.dao.repository.ClientRepository;
+import com.example.internship.dao.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class ClientService {
 
     private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void delete(Long id) {
@@ -31,7 +33,7 @@ public class ClientService {
             client.getBooks().clear();
 
             if (client.getUser() != null) {
-                client.getUser().setClient(null);
+                userRepository.delete(client.getUser());
             }
 
             clientRepository.save(client);

@@ -6,8 +6,10 @@ import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.service.BookcaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -54,5 +56,14 @@ public class BookcaseFacade {
         return BookcaseEditResponse.builder()
                 .number(saved.getNumber())
                 .build();
+    }
+
+    public ResponseEntity<List<Integer>> findAllBookcaseNumbers(){
+        List<Integer> bookcaseNumbers = bookcaseService.findAllBookcaseNumbers();
+        return ResponseEntity.ok(bookcaseNumbers);
+    }
+
+    public Bookcase findBookcaseById(Long id) {
+        return bookcaseService.findById(id);
     }
 }

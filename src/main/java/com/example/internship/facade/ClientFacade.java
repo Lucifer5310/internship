@@ -1,13 +1,16 @@
 package com.example.internship.facade;
 
+import com.example.internship.dao.entity.Users;
 import com.example.internship.dto.client.*;
 import com.example.internship.dao.entity.Client;
 import com.example.internship.dao.entity.Book;
 import com.example.internship.service.ClientService;
+import com.example.internship.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -31,20 +34,6 @@ public class ClientFacade {
 
     public void delete(Long id) {
         clientService.delete(id);
-    }
-
-    public ClientCreateResponse savePostRequest(ClientCreateRequest clientCreateRequest){
-        final Client client = new Client();
-        client.setFirstName(clientCreateRequest.getFirstName());
-        client.setMiddleName(clientCreateRequest.getMiddleName());
-
-        Client saved = clientService.save(client);
-        log.info("Client is added");
-
-        return ClientCreateResponse.builder()
-                .firstName(saved.getFirstName())
-                .middleName(saved.getMiddleName())
-                .build();
     }
 
     public ClientEditResponse saveEditRequest(ClientEditRequest clientEditRequest, long id){

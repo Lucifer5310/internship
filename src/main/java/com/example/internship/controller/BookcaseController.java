@@ -5,7 +5,10 @@ import com.example.internship.dto.bookcase.*;
 import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.facade.BookcaseFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bookcase")
@@ -17,6 +20,16 @@ public class BookcaseController {
     @GetMapping
     public Iterable<BookcaseGetResponse> findAllBookcase() {
         return bookcaseFacade.findAll();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Bookcase findBookcaseById(@PathVariable Long id) {
+        return bookcaseFacade.findBookcaseById(id);
+    }
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<Integer>> findAllBookcaseNumbers() {
+        return bookcaseFacade.findAllBookcaseNumbers();
     }
 
     @PostMapping

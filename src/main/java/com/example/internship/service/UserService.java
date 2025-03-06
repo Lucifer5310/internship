@@ -1,6 +1,7 @@
 package com.example.internship.service;
 
 import com.example.internship.dao.entity.Users;
+import com.example.internship.dao.repository.ClientRepository;
 import com.example.internship.dao.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ClientRepository clientRepository;
 
     @Transactional
     public Users save (Users users) {
@@ -26,8 +28,19 @@ public class UserService {
 
     @Transactional
     public void delete(long id) {
-        userRepository.deleteById(id);
-        log.info("User is deleted");
+        Optional<Users> optionalUsers = userRepository.findById(id);
+        if (optionalUsers.isPresent()){
+            Users user = optionalUsers.get();
+
+            if (user.getClient() != null){
+                clientRepository.delete(user.getClient());
+            }
+            userRepository.save(user);
+            userRepository.deleteById(id);
+            log.info("User is deleted");
+        } else {
+            throw new RuntimeException("User with ID " + id + " not found");
+        }
     }
 
     @Transactional(readOnly = true)
@@ -41,19 +54,6 @@ public class UserService {
         return byId.orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    @Transactional
-    public Users create (Users users) {
-        if (userRepository.existsByUsername(users.getUsername())) {
-            throw new RuntimeException("User with such username has already existed");
-        }
-
-        if (userRepository.existsByEmail(users.getEmail())) {
-            throw new RuntimeException("User with such email has already existed");
-        }
-
-        return save(users);
-    }
-
     @Transactional(readOnly = true)
     public Users getByUsername(String username) {
         return userRepository.findByUsername(username)
@@ -63,10 +63,5 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDetailsService userDetailsService() {
         return this::getByUsername;
-    }
-
-    public Users getCurrentUser() {
-        var username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getByUsername(username);
     }
 }

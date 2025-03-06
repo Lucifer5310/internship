@@ -1,9 +1,12 @@
 package com.example.internship.facade;
 
 import com.example.internship.dao.entity.Book;
+import com.example.internship.dao.entity.Bookcase;
 import com.example.internship.dto.client.ClientGetResponse;
 import com.example.internship.dto.shelf.*;
 import com.example.internship.dao.entity.Shelf;
+import com.example.internship.service.BookService;
+import com.example.internship.service.BookcaseService;
 import com.example.internship.service.ShelfService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,7 @@ import java.util.stream.StreamSupport;
 public class ShelfFacade {
 
     private final ShelfService shelfService;
+    private final BookcaseService bookcaseService;
 
     public Iterable<ShelfGetResponse> findAll() {
         return StreamSupport.stream(shelfService.findAll().spliterator(), false)
@@ -32,19 +36,26 @@ public class ShelfFacade {
                 .collect(Collectors.toList());
     }
 
+    public Shelf findShelfById(Long id) {
+        return shelfService.findById(id);
+    }
+
     public void delete(long id) {
         shelfService.delete(id);
     }
 
     public ShelfCreateResponse savePostRequest(ShelfCreateRequest shelfCreateRequest){
         final Shelf shelf = new Shelf();
+        Bookcase bookcase = bookcaseService.findByNumber(shelfCreateRequest.getBookcaseNumber());
         shelf.setName(shelfCreateRequest.getName());
+        shelf.setBookcase(bookcase);
 
         Shelf saved = shelfService.save(shelf);
         log.info("Shelf is added");
 
         return ShelfCreateResponse.builder()
                 .name(saved.getName())
+                .bookcaseNumber(saved.getBookcase().getNumber())
                 .build();
     }
 

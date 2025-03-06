@@ -1,5 +1,6 @@
 package com.example.internship.controller;
 
+import com.example.internship.dao.entity.Shelf;
 import com.example.internship.dto.shelf.*;
 import com.example.internship.facade.ShelfFacade;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,11 @@ public class ShelfController {
     @GetMapping(value = "/list")
     public ResponseEntity<List<String>> findAllShelfName() {
         return shelfFacade.findAllShelfName();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Shelf findShelfById(@PathVariable Long id){
+        return shelfFacade.findShelfById(id);
     }
 
     @GetMapping

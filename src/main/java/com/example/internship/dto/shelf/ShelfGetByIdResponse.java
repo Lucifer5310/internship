@@ -1,15 +1,16 @@
 package com.example.internship.dto.shelf;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
-public class ShelfCreateRequest {
+@Builder
+public class ShelfGetByIdResponse {
 
     private String name;
     private Integer bookcaseNumber;

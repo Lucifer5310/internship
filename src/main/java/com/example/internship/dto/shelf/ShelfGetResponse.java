@@ -11,6 +11,6 @@ import java.util.List;
 public class ShelfGetResponse {
 
     private String name;
-    private int bookcaseNumber;
+    private Integer bookcaseNumber;
     private List<String> bookNameList;
 }

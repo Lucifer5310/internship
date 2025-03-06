@@ -1,6 +1,7 @@
 package com.example.internship.facade;
 
 
+import com.example.internship.dao.entity.Book;
 import com.example.internship.dto.author.*;
 import com.example.internship.dao.entity.Author;
 import com.example.internship.service.AuthorService;

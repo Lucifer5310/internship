@@ -23,11 +23,6 @@ public class ClientController {
         return clientFacade.findById(id);
     }
 
-    @PostMapping
-    public ClientCreateResponse addOneClient(@RequestBody ClientCreateRequest clientCreateRequest){
-        return clientFacade.savePostRequest(clientCreateRequest);
-    }
-
     @PutMapping(value = "/{id}")
     public ClientEditResponse replaceClient(@RequestBody ClientEditRequest clientEditRequest,
                                             @PathVariable long id) {
