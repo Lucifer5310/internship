@@ -32,8 +32,6 @@ public class UsersFacade {
                 .collect(Collectors.toList());
     }
 
-    public
-
     public void delete(long id) {
         userService.delete(id);
     }

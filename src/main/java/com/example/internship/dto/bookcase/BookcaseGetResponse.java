@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class BookcaseGetResponse {
 
-    private int number;
+    private Long id;
+    private Integer number;
     private List<String> shelfName;
 }

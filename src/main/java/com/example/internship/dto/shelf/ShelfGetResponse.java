@@ -10,6 +10,7 @@ import java.util.List;
 @Builder
 public class ShelfGetResponse {
 
+    private Long id;
     private String name;
     private Integer bookcaseNumber;
     private List<String> bookNameList;

@@ -28,6 +28,7 @@ public class ShelfFacade {
     public Iterable<ShelfGetResponse> findAll() {
         return StreamSupport.stream(shelfService.findAll().spliterator(), false)
                 .map(shelf -> new ShelfGetResponse(
+                        shelf.getId(),
                         shelf.getName(),
                         shelf.getBookcase().getNumber(),
                         shelf.getBooks().stream()
@@ -36,8 +37,12 @@ public class ShelfFacade {
                 .collect(Collectors.toList());
     }
 
-    public Shelf findShelfById(Long id) {
-        return shelfService.findById(id);
+    public ShelfGetByIdResponse findShelfById(Long id) {
+        Shelf shelf = shelfService.findById(id);
+        return ShelfGetByIdResponse.builder()
+                .name(shelf.getName())
+                .bookcaseNumber(shelf.getBookcase().getNumber())
+                .build();
     }
 
     public void delete(long id) {
@@ -61,7 +66,9 @@ public class ShelfFacade {
 
     public ShelfEditResponse saveEditRequest(ShelfEditRequest shelfEditRequest, long id){
         Shelf shelf = shelfService.findById(id);
+        Bookcase bookcase = bookcaseService.findByNumber(shelfEditRequest.getBookcaseNumber());
         shelf.setName(shelfEditRequest.getName());
+        shelf.setBookcase(bookcase);
 
         Shelf saved = shelfService.save(shelf);
         log.info("Shelf is edited");

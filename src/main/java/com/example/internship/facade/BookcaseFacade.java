@@ -23,6 +23,7 @@ public class BookcaseFacade {
     public Iterable<BookcaseGetResponse> findAll() {
         return StreamSupport.stream(bookcaseService.findAll().spliterator(), false)
                 .map(bookcase -> new BookcaseGetResponse(
+                        bookcase.getId(),
                         bookcase.getNumber(),
                         bookcase.getShelfs().stream()
                                 .map(Shelf::getName)
