@@ -11,4 +11,5 @@ public class ClientEditResponse {
 
     private String firstName;
     private String middleName;
+    private String userEmail;
 }

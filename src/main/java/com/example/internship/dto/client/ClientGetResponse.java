@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class ClientGetResponse {
 
+    private Long id;
     private String firstName;
     private String middleName;
-    private List<String> bookNameList;
 }

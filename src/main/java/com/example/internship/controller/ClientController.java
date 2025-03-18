@@ -19,7 +19,7 @@ public class ClientController {
     }
 
     @GetMapping(value = "/{id}")
-    public ClientGetResponse findClientById(@PathVariable long id) {
+    public ClientGetByIdResponse findClientById(@PathVariable long id) {
         return clientFacade.findById(id);
     }
 
