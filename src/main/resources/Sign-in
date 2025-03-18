@@ -1,0 +1,13 @@
+1) Login: seva
+   Password: 12345
+   Role: Admin
+
+2) Login: rrrr
+   Password: 0000
+   Role: User
+
+3) Login: qqqq
+   Password: 1111
+   Role: User
+
+   Доступ к Swagger: http://localhost:8080/swagger-ui/index.html#/

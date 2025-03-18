@@ -1,0 +1,54 @@
+services:
+  app:
+    image: library:latest
+    container_name: library_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      SPRING_APPLICATION_NAME: internship
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_container:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: seva2201
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_LOCATIONS: classpath:db/migration
+      SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
+
+      TOKEN_JWT: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+
+      SPRINGDOC_API_DOCS_ENABLED: "true"
+      SPRINGDOC_SWAGGER_UI_PATH: /swagger-ui
+      SPRINGDOC_SWAGGER_UI_OPERATIONS_SORTER: method
+      SPRINGDOC_SWAGGER_UI_TAGS_SORTER: alpha
+      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+
+      MANAGEMENT_ENDPOINT_METRICS_ACCESS: unrestricted
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+      MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED: "true"
+
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  db:
+    image: postgres:16.4
+    container_name: postgres_container
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: seva2201
+    ports:
+      - "6000:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

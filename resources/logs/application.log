@@ -1,0 +1,40 @@
+2025-02-10 12:07:05 [main] INFO  c.e.internship.InternshipApplication - Starting InternshipApplication using Java 23 with PID 8096 (D:\Projects\internship\build\classes\java\main started by seva4 in D:\Projects\internship)
+2025-02-10 12:07:05 [main] INFO  c.e.internship.InternshipApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-10 12:07:10 [main] INFO  c.e.internship.InternshipApplication - Started InternshipApplication in 6.044 seconds (process running for 6.604)
+2025-02-10 12:07:25 [main] INFO  c.e.internship.InternshipApplication - Starting InternshipApplication using Java 23 with PID 17220 (D:\Projects\internship\build\classes\java\main started by seva4 in D:\Projects\internship)
+2025-02-10 12:07:25 [main] INFO  c.e.internship.InternshipApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-10 12:07:26 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-02-10 12:07:26 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-10 12:07:26 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10 12:07:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-10 12:07:27 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-10 12:07:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@173cfb01
+2025-02-10 12:07:27 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-10 12:07:27 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:6000/postgres (PostgreSQL 16.4)
+2025-02-10 12:07:27 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.027s)
+2025-02-10 12:07:27 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2.4
+2025-02-10 12:07:27 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-02-10 12:07:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-02-10 12:07:30 [main] INFO  c.e.internship.InternshipApplication - Started InternshipApplication in 6.075 seconds (process running for 6.651)
+2025-02-10 12:07:30 [RMI TCP Connection(2)-26.199.202.108] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-10 12:09:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-02-10 12:09:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-02-10 12:09:11 [main] INFO  c.e.internship.InternshipApplication - Starting InternshipApplication using Java 23 with PID 21140 (D:\Projects\internship\build\classes\java\main started by seva4 in D:\Projects\internship)
+2025-02-10 12:09:11 [main] INFO  c.e.internship.InternshipApplication - No active profile set, falling back to 1 default profile: "default"
+2025-02-10 12:09:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-02-10 12:09:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-10 12:09:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10 12:09:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-10 12:09:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-10 12:09:13 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@67784537
+2025-02-10 12:09:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-10 12:09:13 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:6000/postgres (PostgreSQL 16.4)
+2025-02-10 12:09:13 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 5 migrations (execution time 00:00.026s)
+2025-02-10 12:09:13 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2.4
+2025-02-10 12:09:13 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-02-10 12:09:17 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-02-10 12:09:17 [main] INFO  c.e.internship.InternshipApplication - Started InternshipApplication in 6.12 seconds (process running for 6.657)
+2025-02-10 12:09:17 [RMI TCP Connection(3)-26.199.202.108] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-10 12:36:21 [http-nio-8080-exec-3] INFO  c.e.i.controller.BookController - Book is deleted
+2025-02-10 12:43:34 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-02-10 12:43:34 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
