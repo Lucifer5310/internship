@@ -33,10 +33,11 @@ public class ClientService {
             client.getBooks().clear();
 
             if (client.getUser() != null) {
-                userRepository.delete(client.getUser());
+                client.getUser().setClient(null);
             }
 
             clientRepository.save(client);
+            userRepository.deleteById(id);
             clientRepository.deleteById(id);
             log.info("Client is deleted");
         } else {
@@ -47,11 +48,6 @@ public class ClientService {
     @Transactional
     public Client save(Client client){
         return clientRepository.save(client);
-    }
-
-    @Transactional(readOnly = true)
-    public Iterable<Client> findAll() {
-        return clientRepository.findAll();
     }
 
     @Transactional(readOnly = true)

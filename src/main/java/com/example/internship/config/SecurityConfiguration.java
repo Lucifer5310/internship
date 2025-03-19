@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                 }))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/**", "/auth/refresh", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "http://localhost:3000").permitAll()
-                        .requestMatchers("/users").hasRole("ADMIN")
+                        .requestMatchers("/users", "/users/**").hasRole("ADMIN")
                         .requestMatchers("/author", "/author/**", "/book", "/book/**", "/bookcase", "/bookcase/**",
                                 "/client", "/client/**", "/shelf", "/shelf/**",
                                 "/images/all", "/images/download/**", "/images/delete/**", "/images/upload", "/images/metadata").hasAnyRole("ADMIN", "USER")

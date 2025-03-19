@@ -19,28 +19,10 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final ClientRepository clientRepository;
 
     @Transactional
     public Users save (Users users) {
         return userRepository.save(users);
-    }
-
-    @Transactional
-    public void delete(long id) {
-        Optional<Users> optionalUsers = userRepository.findById(id);
-        if (optionalUsers.isPresent()){
-            Users user = optionalUsers.get();
-
-            if (user.getClient() != null){
-                clientRepository.delete(user.getClient());
-            }
-            userRepository.save(user);
-            userRepository.deleteById(id);
-            log.info("User is deleted");
-        } else {
-            throw new RuntimeException("User with ID " + id + " not found");
-        }
     }
 
     @Transactional(readOnly = true)

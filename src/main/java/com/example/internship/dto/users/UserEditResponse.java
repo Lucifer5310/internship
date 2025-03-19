@@ -1,6 +1,7 @@
 package com.example.internship.dto.users;
 
 
+import com.example.internship.dao.entity.enumerate.Role;
 import lombok.*;
 
 @AllArgsConstructor
@@ -10,7 +11,5 @@ import lombok.*;
 @Builder
 public class UserEditResponse {
 
-    private String username;
-    private String email;
-    private long clientId;
+    private Role role;
 }

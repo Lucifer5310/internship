@@ -10,12 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Builder
-public class UserGetResponse {
+public class UserGetRoleById {
 
-    private Long id;
-    private String username;
-    private String email;
     private Role role;
-    private String clientFirstName;
-    private String clientMiddleName;
 }

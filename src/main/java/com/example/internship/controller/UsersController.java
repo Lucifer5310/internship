@@ -4,6 +4,7 @@ import com.example.internship.dto.users.UserEditRequest;
 import com.example.internship.dto.users.UserEditResponse;
 import com.example.internship.dao.entity.Users;
 import com.example.internship.dto.users.UserGetResponse;
+import com.example.internship.dto.users.UserGetRoleById;
 import com.example.internship.facade.UsersFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +21,14 @@ public class UsersController {
         return userFacade.findAll();
     }
 
-    @PutMapping(value = "/{id}")
-    public UserEditResponse replaceUser(@RequestBody UserEditRequest userEditRequest,
-                                        @PathVariable long id) {
-        return userFacade.saveEditRequest(userEditRequest, id);
+    @GetMapping(value = "/{id}")
+    public UserGetRoleById findRoleById(@PathVariable Long id){
+        return userFacade.findRoleById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable long id) {
-        userFacade.delete(id);
+    @PutMapping(value = "/{id}")
+    public UserEditResponse replaceUser(@RequestBody UserEditRequest userEditRequest,
+                                        @PathVariable Long id) {
+        return userFacade.saveEditRequest(userEditRequest, id);
     }
 }

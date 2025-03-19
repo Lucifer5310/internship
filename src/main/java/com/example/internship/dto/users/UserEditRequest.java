@@ -1,6 +1,7 @@
 package com.example.internship.dto.users;
 
 
+import com.example.internship.dao.entity.enumerate.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,5 @@ import lombok.Setter;
 @Setter
 public class UserEditRequest {
 
-    private String username;
-    private String email;
-    private long clientId;
+    private Role role;
 }

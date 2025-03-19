@@ -13,11 +13,6 @@ public class ClientController {
 
     private final ClientFacade clientFacade;
 
-    @GetMapping
-    public Iterable<ClientGetResponse> findAllClient() {
-        return clientFacade.findAll();
-    }
-
     @GetMapping(value = "/{id}")
     public ClientGetByIdResponse findClientById(@PathVariable long id) {
         return clientFacade.findById(id);

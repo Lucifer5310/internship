@@ -21,15 +21,6 @@ public class ClientFacade {
     private final ClientService clientService;
     private final UserService userService;
 
-    public Iterable<ClientGetResponse> findAll() {
-        return StreamSupport.stream(clientService.findAll().spliterator(), false)
-                .map(client -> new ClientGetResponse(
-                        client.getId(),
-                        client.getFirstName(),
-                        client.getMiddleName()))
-                .collect(Collectors.toList());
-    }
-
     public void delete(Long id) {
         clientService.delete(id);
     }
